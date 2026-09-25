@@ -23,7 +23,7 @@ export default function CellarDoorPage() {
 
   return (
     <>
-      <PageHero label="Cellar Door" title="Three ways to gather" tone="cream">
+      <PageHero label="Cellar Door" title="Three ways to gather" tone="linen">
         <p>
           Reserve a leisurely lunch or dinner, share seasonal fare, and unwind among the vines.
         </p>
@@ -42,9 +42,9 @@ export default function CellarDoorPage() {
                   <MediaImage asset={asset} sizes="(max-width: 768px) 100vw, 50vw" />
                 </div>
                 <div>
-                  <p className="label-micro text-wine">{space.mood.join(" · ")}</p>
-                  <h2 className="font-display text-4xl mt-3">{space.name}</h2>
-                  <p className="mt-4 text-stone leading-relaxed">{space.description}</p>
+                  <p className="label-ui text-claret">{space.mood.join(", ")}</p>
+                  <h2 className="font-display text-4xl mt-3 text-dusk">{space.name}</h2>
+                  <p className="mt-4 text-loam leading-relaxed font-body">{space.description}</p>
                   <p className="mt-4 text-sm">{space.capacity}</p>
                   {space.petFriendly && (
                     <p className="mt-3 text-sm text-olive">

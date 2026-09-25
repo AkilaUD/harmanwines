@@ -29,8 +29,8 @@ export default function RegionPage() {
               ["Evening", "Local stay"],
             ].map(([when, what]) => (
               <li key={when} className="border-t border-charcoal/15 pt-4">
-                <p className="label-micro">{when}</p>
-                <p className="font-display text-2xl mt-2">{what}</p>
+                <p className="label-ui text-loam">{when}</p>
+                <p className="font-display text-2xl mt-2 text-dusk">{what}</p>
               </li>
             ))}
           </ol>
@@ -38,16 +38,16 @@ export default function RegionPage() {
           <ul className="grid md:grid-cols-2 gap-8">
             {places.map((p) => (
               <li key={p.id} className="border-t border-charcoal/10 pt-5">
-                <h2 className="font-display text-2xl">{p.name}</h2>
-                <p className="mt-2 text-stone">{p.blurb}</p>
+                <h2 className="font-display text-2xl text-dusk">{p.name}</h2>
+                <p className="mt-2 text-loam font-body">{p.blurb}</p>
                 {p.url && (
                   <a
                     href={p.url}
-                    className="inline-block mt-3 label-micro text-burgundy"
+                    className="inline-block mt-3 label-ui link-quiet link-claret"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    Learn more →
+                    Learn more
                   </a>
                 )}
               </li>

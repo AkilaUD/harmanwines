@@ -7,18 +7,19 @@ type ButtonSize = "sm" | "md" | "lg";
 
 const variants: Record<ButtonVariant, string> = {
   primary:
-    "bg-burgundy text-cream hover:bg-plum border border-transparent",
+    "bg-claret text-linen hover:bg-plum border border-transparent",
   secondary:
-    "bg-transparent text-charcoal border border-charcoal/25 hover:border-charcoal/60",
-  ghost: "bg-transparent text-charcoal hover:text-burgundy underline-offset-4 hover:underline",
+    "bg-transparent text-dusk border border-dusk/20 hover:border-dusk/50",
+  ghost:
+    "bg-transparent text-dusk hover:text-claret underline-offset-4 hover:underline",
   "on-dark":
-    "bg-cream text-charcoal hover:bg-paper border border-transparent",
+    "bg-linen text-dusk hover:bg-paper border border-transparent",
 };
 
 const sizes: Record<ButtonSize, string> = {
-  sm: "px-4 py-2 text-xs tracking-[0.14em] uppercase",
-  md: "px-5 py-3 text-xs tracking-[0.16em] uppercase",
-  lg: "px-7 py-3.5 text-sm tracking-[0.16em] uppercase",
+  sm: "px-4 py-2 text-sm",
+  md: "px-5 py-2.5 text-sm",
+  lg: "px-7 py-3.5 text-base",
 };
 
 type Common = {
@@ -43,7 +44,7 @@ export function Button({
   ...props
 }: AsButton | AsLink) {
   const classes = cn(
-    "inline-flex items-center justify-center gap-2 rounded-sm transition-colors duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-burgundy disabled:opacity-50",
+    "font-ui inline-flex items-center justify-center gap-2 rounded-sm transition-colors duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-claret disabled:opacity-50",
     variants[variant],
     sizes[size],
     className,

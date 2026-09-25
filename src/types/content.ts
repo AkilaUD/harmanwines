@@ -20,6 +20,8 @@ export type Wine = {
   availability: "in-stock" | "limited" | "sold-out";
   category: "current" | "previous";
   colour: "white" | "rose" | "red" | "sparkling";
+  /** Shelf card ground — vintage colour for WineStrip */
+  groundColor: string;
 };
 
 export type EventItem = {

@@ -50,19 +50,19 @@ export function SiteFooter() {
   const { address, phone, email, liquorLicence, hours, social } = siteSettings;
 
   return (
-    <footer className="bg-deep-vine text-cream mt-auto">
+    <footer className="bg-dusk text-linen mt-auto">
       <div className="mx-auto max-w-7xl px-5 md:px-8 py-16 md:py-20">
         <div className="grid gap-12 lg:grid-cols-[1.3fr_2fr]">
           <div>
             <p className="font-display text-3xl md:text-4xl">Harman Wines</p>
-            <p className="label-micro mt-3 text-cream/55">
-              Wattle Bank · South Gippsland · Victoria
+            <p className="label-ui mt-3 text-linen/55">
+              Wattle Bank, South Gippsland, Victoria
             </p>
-            <p className="mt-6 max-w-sm text-cream/75 text-sm leading-relaxed">
+            <p className="mt-6 max-w-sm font-body text-linen/75 text-sm leading-relaxed">
               A family-owned vineyard, winery and cellar door where friends gather to meet, eat and
               drink.
             </p>
-            <div className="mt-8 space-y-2 text-sm text-cream/85">
+            <div className="mt-8 space-y-2 font-ui text-sm text-linen/85">
               <p>
                 {address.line1}
                 <br />
@@ -88,13 +88,13 @@ export function SiteFooter() {
                 href="/shop"
                 variant="secondary"
                 size="sm"
-                className="border-cream/30 text-cream hover:border-cream"
+                className="border-linen/30 text-linen hover:border-linen"
               >
                 Shop Wine
               </Button>
             </div>
 
-            <div className="mt-6 flex gap-4 text-sm">
+            <div className="mt-6 flex gap-4 font-ui text-sm">
               <a
                 href={social.facebook}
                 className="no-underline hover:underline"
@@ -117,11 +117,11 @@ export function SiteFooter() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {footerNav.map((col) => (
               <div key={col.title}>
-                <p className="label-micro text-cream/45 mb-4">{col.title}</p>
-                <ul className="space-y-2.5 text-sm">
+                <p className="label-ui text-linen/45 mb-4">{col.title}</p>
+                <ul className="space-y-2.5 font-ui text-sm">
                   {col.links.map((l) => (
                     <li key={l.href}>
-                      <Link href={l.href} className="no-underline text-cream/80 hover:text-cream">
+                      <Link href={l.href} className="no-underline text-linen/80 hover:text-linen">
                         {l.label}
                       </Link>
                     </li>
@@ -132,13 +132,13 @@ export function SiteFooter() {
           </div>
         </div>
 
-        <div className="mt-14 pt-8 border-t border-cream/12 grid gap-6 md:grid-cols-2 text-xs text-cream/50 leading-relaxed">
+        <div className="mt-14 pt-8 border-t border-linen/12 grid gap-6 md:grid-cols-2 font-ui text-xs text-linen/50 leading-relaxed">
           <div>
-            <p className="label-micro text-cream/35 mb-3">Opening hours</p>
+            <p className="label-ui text-linen/35 mb-3">Opening hours</p>
             <ul className="space-y-1">
               {hours.map((h) => (
                 <li key={h.day}>
-                  <span className="text-cream/70">{h.day}</span> — {h.sessions.join("; ")}
+                  <span className="text-linen/70">{h.day}</span> — {h.sessions.join("; ")}
                 </li>
               ))}
             </ul>

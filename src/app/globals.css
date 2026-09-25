@@ -1,40 +1,45 @@
 @import "tailwindcss";
 
 :root {
-  /* Cinematic Royal Farm — palette from the property */
-  --deep-vine: #17251d;
+  /* Cinematic editorial — brief palette */
+  --linen: #ede6d6;
+  --dusk: #1b1e17;
+  --claret: #5b1220;
+  --harvest: #c99a4e;
+  --loam: #6b5842;
+  --garden: #4b5d3a;
+
+  /* Soft surfaces / supporting */
+  --paper: #e8e0ce;
   --forest: #263a2a;
   --olive: #657055;
-  /* Lighter olive for links/UI on deep-vine / forest (AA) */
   --olive-on-dark: #b8c4a8;
-  --earth: #75624d;
-  --clay: #9a6248;
-  --wine: #552f32;
-  --deep-burgundy: #351c22;
-  --paper: #efe9dc;
-  --cream: #f6f1e7;
-  --charcoal: #24221e;
-
-  /* Aliases */
-  --vine: var(--deep-vine);
-  --burgundy: var(--wine);
-  --plum: var(--deep-burgundy);
-  --terracotta: var(--clay);
-  --dry-grass: #c4b48a;
-  --linen: #e5dfd0;
-  --parchment: #ddd6c4;
-  /* Warm muted — ≥4.5:1 on cream (#F6F1E7) and paper (#EFE9DC) */
-  --stone: #524e46;
+  --charcoal: #1b1e17;
   --mist: #d9d4c8;
-  --muted-on-dark: rgba(246, 241, 231, 0.72);
-  --surface: var(--cream);
+  --muted-on-dark: rgba(237, 230, 214, 0.72);
 
-  --background: var(--cream);
-  --foreground: var(--charcoal);
-  --muted: var(--stone);
-  --accent: var(--wine);
-  --accent-soft: var(--olive);
-  --border: color-mix(in oklab, var(--charcoal) 12%, transparent);
+  /* Migration aliases → new system */
+  --cream: var(--linen);
+  --deep-vine: var(--dusk);
+  --wine: var(--claret);
+  --stone: var(--loam);
+  --vine: var(--dusk);
+  --burgundy: var(--claret);
+  --plum: #3d0c16;
+  --deep-burgundy: #3d0c16;
+  --terracotta: #9a6248;
+  --clay: #9a6248;
+  --earth: var(--loam);
+  --dry-grass: #c4b48a;
+  --parchment: #ddd6c4;
+  --surface: var(--linen);
+
+  --background: var(--linen);
+  --foreground: var(--dusk);
+  --muted: var(--loam);
+  --accent: var(--claret);
+  --accent-soft: var(--garden);
+  --border: color-mix(in oklab, var(--dusk) 12%, transparent);
 
   --ease-organic: cubic-bezier(0.22, 1, 0.36, 1);
   --duration-slow: 900ms;
@@ -47,32 +52,39 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-vine: var(--vine);
-  --color-deep-vine: var(--deep-vine);
+  --color-linen: var(--linen);
+  --color-dusk: var(--dusk);
+  --color-claret: var(--claret);
+  --color-harvest: var(--harvest);
+  --color-loam: var(--loam);
+  --color-garden: var(--garden);
+  --color-paper: var(--paper);
   --color-forest: var(--forest);
   --color-olive: var(--olive);
   --color-olive-on-dark: var(--olive-on-dark);
-  --color-earth: var(--earth);
-  --color-dry-grass: var(--dry-grass);
   --color-cream: var(--cream);
-  --color-paper: var(--paper);
-  --color-linen: var(--linen);
-  --color-parchment: var(--parchment);
-  --color-clay: var(--clay);
-  --color-terracotta: var(--terracotta);
-  --color-burgundy: var(--burgundy);
+  --color-deep-vine: var(--deep-vine);
+  --color-vine: var(--vine);
   --color-wine: var(--wine);
+  --color-burgundy: var(--burgundy);
   --color-plum: var(--plum);
   --color-deep-burgundy: var(--deep-burgundy);
   --color-charcoal: var(--charcoal);
   --color-stone: var(--stone);
+  --color-earth: var(--earth);
+  --color-clay: var(--clay);
+  --color-terracotta: var(--terracotta);
+  --color-dry-grass: var(--dry-grass);
+  --color-parchment: var(--parchment);
   --color-mist: var(--mist);
   --color-muted-on-dark: var(--muted-on-dark);
   --color-surface: var(--surface);
   --color-muted: var(--muted);
   --color-accent: var(--accent);
   --font-display: var(--font-display);
-  --font-sans: var(--font-sans);
+  --font-body: var(--font-body);
+  --font-ui: var(--font-ui);
+  --font-sans: var(--font-body);
 }
 
 @layer base {
@@ -101,18 +113,17 @@
   body {
     background: var(--background);
     color: var(--foreground);
-    font-family: var(--font-sans), system-ui, sans-serif;
+    font-family: var(--font-body), Georgia, "Times New Roman", serif;
     font-size: var(--text-body);
     line-height: 1.65;
     text-rendering: optimizeLegibility;
   }
 
   ::selection {
-    background: color-mix(in oklab, var(--wine) 28%, transparent);
-    color: var(--charcoal);
+    background: color-mix(in oklab, var(--claret) 28%, transparent);
+    color: var(--dusk);
   }
 
-  /* Inherit by default; utilities (text-wine, hover:text-*) win over this */
   a {
     color: inherit;
     text-decoration-thickness: 1px;
@@ -120,34 +131,86 @@
   }
 
   :focus-visible {
-    outline: 2px solid var(--wine);
+    outline: 2px solid var(--claret);
     outline-offset: 3px;
+  }
+
+  .bg-dusk :focus-visible,
+  .bg-deep-vine :focus-visible,
+  .bg-forest :focus-visible,
+  .bg-claret :focus-visible,
+  .bg-burgundy :focus-visible {
+    outline-color: var(--linen);
   }
 }
 
 @layer components {
-  /* Family only — weight/tracking/leading via utilities */
   .font-display {
     font-family: var(--font-display), Georgia, "Times New Roman", serif;
+    font-optical-sizing: auto;
   }
 
-  /* Size/case only — color via text-* utilities */
+  .font-body {
+    font-family: var(--font-body), Georgia, "Times New Roman", serif;
+  }
+
+  .font-ui {
+    font-family: var(--font-ui), system-ui, sans-serif;
+  }
+
+  /* Archivo sentence-case UI — not tracked caps */
+  .label-ui {
+    font-family: var(--font-ui), system-ui, sans-serif;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+  }
+
+  /* Legacy micro — prefer label-ui; kept for gradual migration */
   .label-micro {
+    font-family: var(--font-ui), system-ui, sans-serif;
     font-size: 0.75rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    text-transform: none;
     font-weight: 500;
   }
 
   .text-meta {
+    font-family: var(--font-ui), system-ui, sans-serif;
     font-size: var(--text-meta);
-    letter-spacing: 0.02em;
+    letter-spacing: 0.01em;
   }
 
   .editorial-rule {
     height: 1px;
     background: var(--border);
     border: 0;
+  }
+
+  .link-quiet {
+    text-decoration: none;
+    transition: color var(--duration-med) var(--ease-organic),
+      text-decoration-color var(--duration-med) var(--ease-organic);
+  }
+
+  .link-quiet:hover {
+    text-decoration: underline;
+  }
+
+  .link-claret {
+    color: var(--claret);
+  }
+
+  .link-claret:hover {
+    color: color-mix(in oklab, var(--claret) 80%, black);
+  }
+
+  .link-harvest {
+    color: var(--harvest);
+  }
+
+  .link-harvest:hover {
+    color: color-mix(in oklab, var(--harvest) 85%, white);
   }
 
   .grain {
@@ -159,26 +222,46 @@
     pointer-events: none;
     position: absolute;
     inset: 0;
-    opacity: 0.04;
-    mix-blend-mode: multiply;
+    opacity: 0.03;
+    mix-blend-mode: soft-light;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
 
-  .chapter-ground {
-    transition: background-color var(--duration-slow) var(--ease-organic);
+  .grain-dusk::after {
+    opacity: 0.035;
+    mix-blend-mode: overlay;
   }
 
-  @keyframes hero-settle {
+  .duotone-dusk {
+    position: relative;
+  }
+
+  .duotone-dusk::before {
+    content: "";
+    pointer-events: none;
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: color-mix(in oklab, var(--dusk) 15%, transparent);
+    mix-blend-mode: multiply;
+  }
+
+  .chapter-ground {
+    transition: background-color var(--duration-slow) var(--ease-organic),
+      color var(--duration-slow) var(--ease-organic);
+  }
+
+  @keyframes hero-drift {
     from {
-      transform: scale(1);
+      transform: scale(1) translate(0, 0);
     }
     to {
-      transform: scale(1.03);
+      transform: scale(1.06) translate(-1.5%, -0.8%);
     }
   }
 
   .hero-ken-burns {
-    animation: hero-settle 20s var(--ease-organic) forwards;
+    animation: hero-drift 55s var(--ease-organic) forwards;
     will-change: transform;
   }
 
@@ -190,7 +273,7 @@
 
   .wine-rail {
     display: flex;
-    gap: 3rem;
+    gap: 1.25rem;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     padding-bottom: 1.25rem;
@@ -200,28 +283,18 @@
 
   .wine-rail > * {
     scroll-snap-align: start;
-    flex: 0 0 min(78vw, 320px);
+    flex: 0 0 min(72vw, 280px);
   }
 
   @media (min-width: 768px) {
     .wine-rail > * {
-      flex-basis: min(55vw, 420px);
+      flex-basis: min(42vw, 300px);
     }
   }
 
   @media (min-width: 1024px) {
     .wine-rail > * {
-      flex-basis: min(48vw, 480px);
-    }
-  }
-
-  .wine-rail-dominant > *:first-child {
-    flex-basis: min(85vw, 520px);
-  }
-
-  @media (min-width: 768px) {
-    .wine-rail-dominant > *:first-child {
-      flex-basis: min(62vw, 560px);
+      flex-basis: min(28vw, 320px);
     }
   }
 
@@ -230,13 +303,12 @@
   }
 
   .scroll-cue {
+    font-family: var(--font-ui), system-ui, sans-serif;
     font-size: 0.75rem;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
+    letter-spacing: 0.02em;
     opacity: 0.65;
   }
 
-  /* MediaImage responsive art direction */
   .media-focal {
     --focal: 50% 50%;
     --focal-mobile: var(--focal);
@@ -254,9 +326,8 @@
     }
   }
 
-  /* Branded third-party shells */
   .embed-shell {
-    border: 1px solid color-mix(in oklab, var(--charcoal) 10%, transparent);
+    border: 1px solid color-mix(in oklab, var(--dusk) 10%, transparent);
     background: var(--paper);
     padding: 1rem;
     min-height: 28rem;
@@ -266,6 +337,34 @@
     .embed-shell {
       padding: 1.5rem;
       min-height: 36rem;
+    }
+  }
+
+  .safe-pb {
+    padding-bottom: max(0.75rem, env(safe-area-inset-bottom));
+  }
+
+  .folio-rail {
+    display: flex;
+    gap: 2rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 1rem;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+  }
+
+  .folio-rail > * {
+    scroll-snap-align: start;
+  }
+
+  .season-crossfade {
+    transition: opacity 0.7s var(--ease-organic), background-color 0.7s var(--ease-organic);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .season-crossfade {
+      transition: none;
     }
   }
 }

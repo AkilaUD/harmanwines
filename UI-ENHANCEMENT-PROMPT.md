@@ -104,6 +104,7 @@ Important files:
 - `src/components/booking/*`
 - `src/components/forms/*`
 - `src/content/seed.ts`
+- `src/content/CLIENT_FLAGS.md`
 - `src/content/media.ts`
 - `src/content/images.ts`
 - `public/images/harman/*`
@@ -140,11 +141,10 @@ The current local project has a strong foundation but needs a complete coherence
 
 - The transparent header renders charcoal text over the dark hero. The current `.on-hero` mechanism is never applied.
 - The header has no active navigation state.
-- The mobile menu lacks Escape handling, focus trapping, focus restoration, and proper dialog semantics.
+- The mobile menu now handles Escape, restores toggle focus, and marks its closed overlay inert, but it still lacks a true focus trap and complete dialog semantics.
 - At tablet widths, the desktop navigation is hidden and the mobile menu trigger is also hidden, leaving no complete navigation.
-- The `/visit` page is orphaned.
-- `/legal/cookies` is missing from navigation/footer coverage.
-- The `Explore` link targets `/#place`, but the Place section has no matching `id`.
+- The `/visit` and `/legal/cookies` route links have been added; verify the complete navigation/footer graph rather than assuming the previous orphan-route defects remain.
+- The `Explore` link now has a matching `id="place"`; preserve and test that deep link while checking related anchors.
 - The mobile and desktop information architecture duplicate shopping and wine entry points.
 - `Shop Wine` and the Bag actions need a clear relationship between editorial discovery and commerce.
 
@@ -152,8 +152,8 @@ The current local project has a strong foundation but needs a complete coherence
 
 - The current 11-chapter sequence is visually long—approximately 17,000px on desktop—and repeats a similar alternating image/text rhythm too often.
 - Many sections share the same eyebrow-heading-paragraph-CTA grammar.
-- The `ChapterRegion` list contains invalid wrapper markup between `<ol>` and `<li>` elements.
-- An `EditorialTabs` primitive now exists, but the homepage season/craft controls are not consistently integrated with it and still lack complete tab semantics and keyboard behavior.
+- `ChapterRegion` now uses valid ordered-list markup; preserve it and audit any other list semantics rather than reintroducing wrappers.
+- `EditorialTabs` is integrated into the seasonal land chapter, but the craft chapter still uses a separate tab implementation; standardize the craft control and verify the shared primitive’s keyboard and panel behavior.
 - The closing `sunsetClose` asset now points to a higher-resolution image, but it duplicates the Place aerial and is still forced into a tall 85svh crop; choose a distinct closing image or make the reuse editorially intentional.
 - Several source images are rendered in aspect ratios that do not match their actual dimensions.
 - `MediaImage` now exposes desktop/mobile focal variables. Verify the implementation and all wrapper/fill call sites rather than replacing the primitive.
@@ -540,7 +540,7 @@ Use the real Harman photography as the visual foundation.
 Required actions:
 
 - Audit every rendered image against its actual pixel dimensions and displayed aspect ratio
-- Replace the duplicated `sunsetClose`/Place aerial choice when used as a large closing hero; the asset is no longer the earlier 960×282 file, but the editorial reuse and tall crop still need a decision
+- Replace the duplicated `sunsetClose`/Place aerial choice when used as a large closing hero; the current high-resolution asset still creates an editorial reuse and tall-crop decision
 - Correct the family, pizza, gather, craft, and food/wine crops where declared and rendered aspect ratios disagree
 - Stop stretching or upscaling low-resolution files into large containers
 - Use the existing unused high-resolution photography where it improves the story
@@ -712,7 +712,7 @@ Every error state must offer a useful retry, fallback, contact path, or navigati
 
 ## 15. Content and factual integrity
 
-Use only facts already present in the project or explicitly supplied by the client.
+Use only facts already present in the project or explicitly supplied by the client. Read `src/content/CLIENT_FLAGS.md` before polishing copy; it records client-confirmation blockers that must remain visible in the handoff rather than being silently invented or hidden.
 
 Do not invent:
 
@@ -740,7 +740,7 @@ Before finishing, surface all remaining content blockers. The production UI must
 - Broken navigation paths
 - Empty buttons or decorative controls
 
-When content is missing, hide or gracefully degrade the affected block rather than inventing a replacement.
+When content is missing, hide or gracefully degrade the affected block rather than inventing a replacement. The handoff must explicitly call out the items recorded in `CLIENT_FLAGS.md`, including stale event dates, `DATA REQUIRED` tasting notes/menu/journal/legal/accessibility content, canonical hours, and the choice between `mailto:` forms and a real endpoint.
 
 ---
 

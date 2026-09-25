@@ -8,10 +8,10 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.harmanwines.com
 
 export default function SiteLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="min-h-full flex flex-col bg-cream text-charcoal pb-20 md:pb-0">
+    <div className="min-h-full flex flex-col bg-linen text-dusk pb-20 md:pb-0">
       <a
         href="#main"
-        className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[100] focus:bg-cream focus:px-4 focus:py-2"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[100] focus:bg-linen focus:px-4 focus:py-2"
       >
         Skip to content
       </a>

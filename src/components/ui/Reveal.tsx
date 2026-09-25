@@ -22,16 +22,17 @@ export function Reveal({
   return (
     <motion.div
       className={className}
-      initial={{ opacity: 0, y: 28 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-10% 0px" }}
-      transition={{ duration: 0.9, delay, ease: [0.22, 1, 0.36, 1] }}
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true, margin: "-8% 0px" }}
+      transition={{ duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] }}
     >
       {children}
     </motion.div>
   );
 }
 
+/** Soft italic display line — optional, varied per section (not a universal eyebrow) */
 export function SectionLabel({
   children,
   className,
@@ -39,7 +40,11 @@ export function SectionLabel({
   children: ReactNode;
   className?: string;
 }) {
-  return <p className={cn("label-micro mb-4 text-stone", className)}>{children}</p>;
+  return (
+    <p className={cn("font-display text-lg md:text-xl italic mb-3 text-loam", className)}>
+      {children}
+    </p>
+  );
 }
 
 export function EditorialHeading({

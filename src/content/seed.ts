@@ -75,6 +75,7 @@ export const wines: Wine[] = [
     availability: "in-stock",
     category: "current",
     colour: "sparkling",
+    groundColor: "#D4C48A",
   },
   {
     id: "rose-2024",
@@ -94,6 +95,7 @@ export const wines: Wine[] = [
     availability: "in-stock",
     category: "current",
     colour: "rose",
+    groundColor: "#C9A0A8",
   },
   {
     id: "612-estate-pinot-noir-2023",
@@ -113,6 +115,7 @@ export const wines: Wine[] = [
     availability: "in-stock",
     category: "current",
     colour: "red",
+    groundColor: "#5B1220",
   },
   {
     id: "sauvignon-blanc-2024",
@@ -132,6 +135,7 @@ export const wines: Wine[] = [
     availability: "in-stock",
     category: "current",
     colour: "white",
+    groundColor: "#B8C49A",
   },
   {
     id: "gippsland-syrah-2022",
@@ -151,6 +155,7 @@ export const wines: Wine[] = [
     availability: "in-stock",
     category: "current",
     colour: "red",
+    groundColor: "#3D0C16",
   },
 ];
 

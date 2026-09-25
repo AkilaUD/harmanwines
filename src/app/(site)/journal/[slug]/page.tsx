@@ -23,21 +23,21 @@ export default async function JournalPostPage({ params }: Props) {
   if (!post) notFound();
 
   return (
-    <article className="pt-28 md:pt-36 pb-20">
+    <article className="pt-28 md:pt-36 pb-20 bg-linen text-dusk">
       <div className="mx-auto max-w-3xl px-5 md:px-8">
-        <p className="label-micro text-burgundy">{post.category}</p>
+        <p className="label-ui text-claret">{post.category}</p>
         <h1 className="font-display text-5xl md:text-6xl mt-3">{post.title}</h1>
-        <time className="block mt-4 text-sm text-stone" dateTime={post.publishedAt}>
+        <time className="block mt-4 text-sm text-loam font-ui" dateTime={post.publishedAt}>
           {formatDate(post.publishedAt)}
         </time>
-        <div className="prose-harman mt-10 text-lg text-stone">
+        <div className="prose-harman mt-10 text-lg text-loam font-body">
           {post.body.map((para) => (
             <p key={para.slice(0, 24)}>{para}</p>
           ))}
         </div>
         <p className="mt-12">
-          <Link href="/journal" className="label-micro text-burgundy no-underline hover:underline">
-            ← Back to journal
+          <Link href="/journal" className="link-quiet link-claret font-ui text-sm">
+            Back to journal
           </Link>
         </p>
       </div>

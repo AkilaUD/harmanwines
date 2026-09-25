@@ -37,22 +37,22 @@ export default function EventsPage() {
           })),
         }}
       />
-      <PageHero label="Events" title="An invitation to gather" tone="forest">
+      <PageHero label="Events" title="An invitation to gather" tone="dusk">
         <p>Live music each Sunday and over long weekends — talented local musicians.</p>
       </PageHero>
       <section className="py-16 md:py-24">
         <div className="mx-auto max-w-7xl px-5 md:px-8">
-          <p className="label-micro mb-6">Upcoming Sunday sessions · 12:30pm–3:30pm</p>
-          <ul className="divide-y divide-charcoal/10">
+          <p className="label-ui text-loam mb-6">Upcoming Sunday sessions · 12:30pm–3:30pm</p>
+          <ul className="divide-y divide-dusk/10">
             {events.map((e) => (
               <li key={e.id} className="py-10 grid md:grid-cols-[8rem_1fr_auto] gap-4 items-baseline">
-                <time dateTime={e.date} className="label-micro text-burgundy">
+                <time dateTime={e.date} className="label-ui text-claret">
                   {formatDate(e.date)}
                 </time>
                 <div>
-                  <h2 className="font-display text-3xl">{e.title}</h2>
-                  <p className="mt-2 text-stone">{e.description}</p>
-                  {e.time && <p className="mt-2 text-sm text-stone">{e.time}</p>}
+                  <h2 className="font-display text-3xl text-dusk">{e.title}</h2>
+                  <p className="mt-2 text-loam font-body">{e.description}</p>
+                  {e.time && <p className="mt-2 text-sm text-loam">{e.time}</p>}
                 </div>
                 <Button href="/visit/book" size="sm">
                   Book
@@ -60,7 +60,7 @@ export default function EventsPage() {
               </li>
             ))}
           </ul>
-          <p className="mt-10 text-sm text-stone">
+          <p className="mt-10 text-sm text-loam">
             Event dates change seasonally — confirm on this page or when booking.
           </p>
         </div>

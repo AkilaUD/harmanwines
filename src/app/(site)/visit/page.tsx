@@ -40,7 +40,7 @@ const links = [
 export default function VisitPage() {
   return (
     <>
-      <PageHero label="Visit" title="Come to Wattle Bank" tone="forest">
+      <PageHero label="Visit" title="Come to Wattle Bank" tone="dusk">
         <p>Open Friday–Sunday. Bookings highly recommended.</p>
       </PageHero>
       <section className="py-16 md:py-24">
@@ -52,10 +52,10 @@ export default function VisitPage() {
                   href={l.href}
                   className="group flex flex-col md:flex-row md:items-baseline md:justify-between gap-2 py-8 no-underline"
                 >
-                  <span className="font-display text-3xl md:text-4xl group-hover:text-burgundy transition-colors">
+                  <span className="font-display text-3xl md:text-4xl group-hover:text-claret transition-colors">
                     {l.title}
                   </span>
-                  <span className="text-stone md:text-right max-w-md">{l.body}</span>
+                  <span className="text-loam md:text-right max-w-md font-body">{l.body}</span>
                 </Link>
               </li>
             ))}

@@ -2,17 +2,17 @@
  * Harman media model — every homepage image has one job.
  *
  * Audit (SECTION → ASSET → WHY):
- * Arrive  → aerialDay         — property landscape hero
- * Place   → aerialGolden      — scroll zoom into estate
- * Land    → vinesClose / vineyardPortrait + mosaic tiles
- * Family  → portrait (+ portraitAlt)
- * Craft   → grapes / cellarMoment
+ * Arrive  → heroVineyard        — property landscape hero
+ * Place   → placeMapPath + placeAerial — intro map + scroll zoom
+ * Land    → season* / farm* + mosaic tiles
+ * Family  → familyPortrait
+ * Craft   → craftGrapes / craftCellar / craftGlass
  * Wine    → Ecwid bottles via seed (not here)
- * Table   → pizza + foodWine
+ * Table   → eatFire + pizza + foodWine
  * Gather  → cellarInterior / pergolaView / picnicLawn (distinct)
- * Region  → coastCue (optional plate)
- * Return  → sunsetClose
- * Awards  → seed awards only (badges optional)
+ * Region  → regionMorning / placeAerial / gatherPergola / regionEvening
+ * Return  → returnDusk (sunsetClose aliases same plate)
+ * Awards  → recognitionTexture + seed awards
  */
 
 export type FocalPoint = `${number}% ${number}%`;
@@ -58,6 +58,15 @@ export const media = {
     focalPoint: "52% 38%",
     focalPointMobile: "45% 50%",
   },
+  placeMapPath: {
+    id: "place-map-path",
+    src: "/images/harman/generated/place-map-path.jpg",
+    alt: "Path through the vineyard toward the cellar door",
+    role: "place-intro",
+    section: "place",
+    aspect: "landscape",
+    focalPoint: "50% 45%",
+  },
   landVines: {
     id: "land-vines",
     src: "/images/harman/Brown_D_Harman_Wines_0025-2-2-scaled.jpg",
@@ -75,6 +84,78 @@ export const media = {
     section: "land",
     aspect: "portrait",
     focalPoint: "45% 40%",
+  },
+  seasonSummer: {
+    id: "season-summer",
+    src: "/images/harman/generated/season-summer.jpg",
+    alt: "Summer light across the vineyard rows",
+    role: "season-plate",
+    section: "land",
+    aspect: "landscape",
+    focalPoint: "50% 45%",
+  },
+  seasonAutumn: {
+    id: "season-autumn",
+    src: "/images/harman/generated/season-autumn.jpg",
+    alt: "Autumn harvest colour in the vines",
+    role: "season-plate",
+    section: "land",
+    aspect: "landscape",
+    focalPoint: "50% 45%",
+  },
+  seasonWinter: {
+    id: "season-winter",
+    src: "/images/harman/generated/season-winter.jpg",
+    alt: "Winter pruning light over the vineyard",
+    role: "season-plate",
+    section: "land",
+    aspect: "landscape",
+    focalPoint: "50% 45%",
+  },
+  seasonSpring: {
+    id: "season-spring",
+    src: "/images/harman/generated/season-spring.jpg",
+    alt: "Spring growth beginning in the rows",
+    role: "season-plate",
+    section: "land",
+    aspect: "landscape",
+    focalPoint: "50% 45%",
+  },
+  farmChickens: {
+    id: "farm-chickens",
+    src: "/images/harman/generated/farm-chickens.jpg",
+    alt: "Free-roaming chickens on the farm",
+    role: "farm-mosaic",
+    section: "land",
+    aspect: "square",
+    focalPoint: "50% 45%",
+  },
+  farmBanjo: {
+    id: "farm-banjo",
+    src: "/images/harman/generated/farm-banjo.jpg",
+    alt: "Banjo the farm dog",
+    role: "farm-mosaic",
+    section: "land",
+    aspect: "square",
+    focalPoint: "50% 40%",
+  },
+  farmAlpacas: {
+    id: "farm-alpacas",
+    src: "/images/harman/generated/farm-alpacas.jpg",
+    alt: "Alpacas grazing at Harman Wines",
+    role: "farm-mosaic",
+    section: "land",
+    aspect: "landscape",
+    focalPoint: "50% 45%",
+  },
+  farmGardenHands: {
+    id: "farm-garden-hands",
+    src: "/images/harman/generated/farm-garden-hands.jpg",
+    alt: "Hands in the kitchen garden",
+    role: "farm-mosaic",
+    section: "land",
+    aspect: "portrait",
+    focalPoint: "50% 40%",
   },
   mosaicVines: {
     id: "mosaic-vines",
@@ -109,9 +190,9 @@ export const media = {
     alt: "David and Nicole Harman at the vineyard",
     role: "monograph",
     section: "family",
-    aspect: "portrait",
-    focalPoint: "48% 22%",
-    focalPointMobile: "50% 20%",
+    aspect: "landscape",
+    focalPoint: "48% 28%",
+    focalPointMobile: "50% 22%",
   },
   craftGrapes: {
     id: "craft-grapes",
@@ -130,6 +211,15 @@ export const media = {
     section: "craft",
     aspect: "portrait",
     focalPoint: "48% 40%",
+  },
+  craftGlass: {
+    id: "craft-glass",
+    src: "/images/harman/generated/craft-glass.jpg",
+    alt: "Wine in the glass at Harman Wines",
+    role: "glass",
+    section: "craft",
+    aspect: "portrait",
+    focalPoint: "50% 45%",
   },
   winePaddles: {
     id: "wine-paddles",
@@ -160,6 +250,15 @@ export const media = {
     focalPoint: "45% 48%",
     focalPointMobile: "40% 50%",
   },
+  eatFire: {
+    id: "eat-fire",
+    src: "/images/harman/generated/eat-fire.jpg",
+    alt: "Wood fire and pizza oven at the cellar door",
+    role: "food-fire",
+    section: "table",
+    aspect: "landscape",
+    focalPoint: "50% 45%",
+  },
   gatherInside: {
     id: "gather-inside",
     src: "/images/harman/cropped-Brown_D_Harman_Wines_0364-1-scaled-2.jpg",
@@ -189,22 +288,59 @@ export const media = {
   },
   regionCoast: {
     id: "region-coast",
-    src: "/images/harman/DJI_0007.jpg",
+    src: "/images/harman/Brown_D_Harman_Wines_0285-scaled.jpg",
     alt: "South Gippsland landscape near Bass Coast",
     role: "region-plate",
     section: "region",
     aspect: "landscape",
     focalPoint: "50% 40%",
   },
-  sunsetClose: {
-    id: "sunset-close",
-    src: "/images/harman/dji_fly_20240124_180554_0009_1706413548051_photo-1-scaled.jpg",
-    alt: "Golden light over the Harman Wines property",
+  regionMorning: {
+    id: "region-morning",
+    src: "/images/harman/generated/region-morning.jpg",
+    alt: "Morning light on Bass Coast",
+    role: "region-day",
+    section: "region",
+    aspect: "landscape",
+    focalPoint: "50% 40%",
+  },
+  regionEvening: {
+    id: "region-evening",
+    src: "/images/harman/generated/region-evening.jpg",
+    alt: "Evening light over South Gippsland",
+    role: "region-day",
+    section: "region",
+    aspect: "landscape",
+    focalPoint: "50% 42%",
+  },
+  recognitionTexture: {
+    id: "recognition-texture",
+    src: "/images/harman/generated/recognition-texture.jpg",
+    alt: "Subtle paper texture",
+    role: "texture",
+    section: "recognition",
+    aspect: "editorial",
+    focalPoint: "50% 50%",
+  },
+  returnDusk: {
+    id: "return-dusk",
+    src: "/images/harman/generated/return-dusk.jpg",
+    alt: "Dusk light over the vineyard at Harman Wines",
     role: "closing-heroic",
     section: "return",
     aspect: "cinematic",
-    focalPoint: "48% 42%",
-    focalPointMobile: "45% 50%",
+    focalPoint: "50% 42%",
+    focalPointMobile: "48% 55%",
+  },
+  sunsetClose: {
+    id: "sunset-close",
+    src: "/images/harman/generated/return-dusk.jpg",
+    alt: "Dusk light over the vineyard at Harman Wines",
+    role: "closing-heroic",
+    section: "return",
+    aspect: "cinematic",
+    focalPoint: "50% 42%",
+    focalPointMobile: "48% 55%",
   },
   logoWhite: {
     id: "logo-white",

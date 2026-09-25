@@ -17,17 +17,17 @@ export function BookingShell() {
   return (
     <div className="grid lg:grid-cols-[1fr_1.15fr] gap-12 lg:gap-16">
       <div>
-        <p className="label-micro mb-4">Hospitality first</p>
-        <h2 className="font-display text-5xl md:text-6xl">Book a table</h2>
-        <p className="mt-5 text-stone text-lg max-w-md">
+        <p className="label-ui text-loam mb-4">Hospitality first</p>
+        <h2 className="font-display text-5xl md:text-6xl text-dusk">Book a table</h2>
+        <p className="mt-5 text-loam text-lg max-w-md font-body">
           Online bookings for up to {siteSettings.booking.maxOnlineGuests} guests. Larger groups —
           please call {siteSettings.phone} or email {siteSettings.email}. Bookings open{" "}
           {siteSettings.booking.advanceDays} days ahead.
         </p>
 
-        <ol className="mt-10 flex gap-4 label-micro">
+        <ol className="mt-10 flex gap-4 label-ui">
           {steps.map((s, i) => (
-            <li key={s} className={cn(i === step ? "text-burgundy" : "text-stone")}>
+            <li key={s} className={cn(i === step ? "text-claret" : "text-loam")}>
               {String(i + 1).padStart(2, "0")} {s}
             </li>
           ))}
@@ -35,7 +35,7 @@ export function BookingShell() {
 
         {step === 0 && (
           <div className="mt-8 space-y-3">
-            <p className="font-display text-2xl">Where would you like to gather?</p>
+            <p className="font-display text-2xl text-dusk">Where would you like to gather?</p>
             {spaces.map((s) => (
               <button
                 key={s.id}
@@ -45,16 +45,16 @@ export function BookingShell() {
                   setStep(1);
                 }}
                 className={cn(
-                  "w-full text-left border px-5 py-4 transition-colors",
+                  "w-full text-left border px-5 py-4 transition-colors font-ui",
                   space === s.id
-                    ? "border-burgundy bg-burgundy/5"
-                    : "border-charcoal/15 hover:border-charcoal/40",
+                    ? "border-claret bg-claret/5"
+                    : "border-dusk/15 hover:border-dusk/40",
                 )}
               >
-                <span className="font-medium">{s.name}</span>
-                <span className="block text-sm text-stone mt-1">{s.mood.join(" · ")}</span>
+                <span className="font-medium text-dusk">{s.name}</span>
+                <span className="block text-sm text-loam mt-1">{s.mood.join(", ")}</span>
                 {s.petFriendly && (
-                  <span className="block label-micro text-olive mt-2">Dogs on lead welcome</span>
+                  <span className="block label-ui text-garden mt-2">Dogs on lead welcome</span>
                 )}
               </button>
             ))}
@@ -63,30 +63,30 @@ export function BookingShell() {
 
         {step === 1 && (
           <div className="mt-8 space-y-4">
-            <p className="font-display text-2xl">When?</p>
-            <ul className="text-sm text-stone space-y-2">
+            <p className="font-display text-2xl text-dusk">When?</p>
+            <ul className="text-sm text-loam space-y-2 font-body">
               {siteSettings.hours.map((h) => (
                 <li key={h.day}>
-                  <strong className="text-charcoal font-medium">{h.day}</strong> —{" "}
+                  <strong className="text-dusk font-medium">{h.day}</strong> —{" "}
                   {h.sessions.join("; ")}
                 </li>
               ))}
             </ul>
-            <p className="text-sm text-stone">
+            <p className="text-sm text-loam font-body">
               Choose your date and time in the booking calendar. Note dietary needs, celebrations,
               pets (picnic only), or accessibility in special requests.
             </p>
             <div className="flex gap-3 pt-2">
               <button
                 type="button"
-                className="label-micro text-stone underline"
+                className="label-ui text-loam underline"
                 onClick={() => setStep(0)}
               >
                 Back
               </button>
               <button
                 type="button"
-                className="label-micro text-burgundy underline"
+                className="label-ui text-claret underline"
                 onClick={() => {
                   setStep(2);
                   setShowWidget(true);
@@ -99,8 +99,8 @@ export function BookingShell() {
         )}
 
         {step === 2 && (
-          <div className="mt-8 space-y-4 text-sm text-stone">
-            <p className="font-display text-2xl text-charcoal">Anything we should know?</p>
+          <div className="mt-8 space-y-4 text-sm text-loam font-body">
+            <p className="font-display text-2xl text-dusk">Anything we should know?</p>
             <ul className="list-disc pl-5 space-y-1">
               <li>Dietary requirements & allergies</li>
               <li>Celebration or cake ($2.50pp cake surcharge)</li>
@@ -113,7 +113,7 @@ export function BookingShell() {
             </p>
             <button
               type="button"
-              className="label-micro text-stone underline"
+              className="label-ui text-loam underline"
               onClick={() => setStep(1)}
             >
               Back
@@ -127,11 +127,11 @@ export function BookingShell() {
           <iframe
             title="Book a table at Harman Wines"
             src={nowBookItBookingSrc}
-            className="w-full min-h-[620px] border-0 bg-cream"
+            className="w-full min-h-[620px] border-0 bg-linen"
             loading="lazy"
           />
         ) : (
-          <div className="h-full min-h-[620px] flex items-center justify-center p-8 text-center text-stone">
+          <div className="h-full min-h-[620px] flex items-center justify-center p-8 text-center text-loam font-body">
             <p className="max-w-xs">
               Choose an atmosphere to begin. The live availability calendar opens when you’re ready.
             </p>

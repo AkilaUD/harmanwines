@@ -1,19 +1,25 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Outfit } from "next/font/google";
+import { Fraunces, Newsreader, Archivo } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "@/components/seo/Analytics";
 
-const display = Cormorant_Garamond({
+const display = Fraunces({
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
   variable: "--font-display",
   display: "swap",
 });
 
-const sans = Outfit({
+const body = Newsreader({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600"],
-  variable: "--font-sans",
+  style: ["normal", "italic"],
+  variable: "--font-body",
+  display: "swap",
+});
+
+const ui = Archivo({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  variable: "--font-ui",
   display: "swap",
 });
 
@@ -22,7 +28,7 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.harmanwines.com
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Harman Wines | Wattle Bank · South Gippsland",
+    default: "Harman Wines | Wattle Bank, South Gippsland",
     template: "%s | Harman Wines",
   },
   description:
@@ -31,7 +37,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_AU",
     siteName: "Harman Wines",
-    title: "Harman Wines | Wattle Bank · South Gippsland",
+    title: "Harman Wines | Wattle Bank, South Gippsland",
     description:
       "A family-run vineyard and cellar door in South Gippsland — wine, food, and gathering.",
   },
@@ -44,7 +50,10 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en-AU" className={`${display.variable} ${sans.variable} h-full`}>
+    <html
+      lang="en-AU"
+      className={`${display.variable} ${body.variable} ${ui.variable} h-full`}
+    >
       <body className="min-h-full flex flex-col antialiased">
         <Analytics />
         {children}

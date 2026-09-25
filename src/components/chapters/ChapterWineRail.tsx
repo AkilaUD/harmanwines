@@ -1,4 +1,4 @@
-import { Reveal, SectionLabel, EditorialHeading } from "@/components/ui/Reveal";
+import { Reveal, EditorialHeading } from "@/components/ui/Reveal";
 import { getWines } from "@/lib/content";
 import { Button } from "@/components/ui/Button";
 import { WineStrip } from "@/components/wine/WineStrip";
@@ -9,19 +9,21 @@ export function ChapterWineRail() {
   return (
     <section
       id="wine"
-      className="chapter-ground bg-cream py-24 md:py-32"
+      className="chapter-ground bg-dusk text-linen py-24 md:py-32"
       aria-labelledby="wine-heading"
     >
       <div className="mx-auto max-w-7xl px-5 md:px-8 mb-10">
         <Reveal className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
           <div>
-            <SectionLabel>Drink</SectionLabel>
-            <EditorialHeading id="wine-heading">The collection</EditorialHeading>
-            <p className="mt-4 max-w-lg text-stone">
+            <p className="label-ui text-linen/55">Drink</p>
+            <EditorialHeading id="wine-heading" className="text-linen">
+              The collection
+            </EditorialHeading>
+            <p className="mt-4 max-w-lg font-body text-linen/70">
               Estate cool-climate wines — handmade on site at Wattle Bank.
             </p>
           </div>
-          <Button href="/wine" variant="secondary">
+          <Button href="/wine" variant="on-dark">
             View all wines
           </Button>
         </Reveal>

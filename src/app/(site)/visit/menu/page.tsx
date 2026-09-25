@@ -30,16 +30,16 @@ export default function MenuPage() {
           <div className="grid md:grid-cols-2 gap-12">
             {categories.map((cat) => (
               <div key={cat.id} id={cat.id}>
-                <h2 className="font-display text-3xl border-b border-charcoal/10 pb-3">{cat.name}</h2>
+                <h2 className="font-display text-3xl border-b border-dusk/10 pb-3 text-dusk">{cat.name}</h2>
                 <ul className="mt-6 space-y-5">
                   {cat.items.map((item) => (
                     <li key={item.id}>
                       <div className="flex justify-between gap-4">
-                        <h3 className="font-medium">{item.name}</h3>
-                        {item.price && <span className="text-stone text-sm">{item.price}</span>}
+                        <h3 className="font-medium text-dusk">{item.name}</h3>
+                        {item.price && <span className="text-loam text-sm">{item.price}</span>}
                       </div>
                       {item.description && (
-                        <p className="mt-1 text-sm text-stone">{item.description}</p>
+                        <p className="mt-1 text-sm text-loam">{item.description}</p>
                       )}
                     </li>
                   ))}
@@ -48,39 +48,39 @@ export default function MenuPage() {
             ))}
           </div>
 
-          <aside className="mt-16 border border-charcoal/10 p-8 bg-surface">
-            <p className="label-micro mb-3">Tonight with pizza</p>
-            <h2 className="font-display text-2xl">Suggested estate wines</h2>
+          <aside className="mt-16 border border-dusk/10 p-8 bg-paper">
+            <p className="label-ui text-loam mb-3">Tonight with pizza</p>
+            <h2 className="font-display text-2xl text-dusk">Suggested estate wines</h2>
             <ul className="mt-6 space-y-3">
               {wines.map((w) => (
                 <li key={w.id}>
-                  <Link href={`/wine/${w.slug}`} className="flex justify-between no-underline hover:text-burgundy">
+                  <Link href={`/wine/${w.slug}`} className="flex justify-between no-underline hover:text-claret">
                     <span>{w.name}</span>
-                    <span className="text-stone text-sm">{formatPrice(w.price)}</span>
+                    <span className="text-loam text-sm">{formatPrice(w.price)}</span>
                   </Link>
                 </li>
               ))}
             </ul>
-            <p className="mt-4 text-xs text-stone">
+            <p className="mt-4 text-xs text-loam">
               Pairings are suggestions for browsing — ask staff for current by-the-glass options.
             </p>
           </aside>
 
           <div className="mt-16" id="suppliers">
-            <h2 className="font-display text-3xl">Local producers</h2>
+            <h2 className="font-display text-3xl text-dusk">Local producers</h2>
             <ul className="mt-8 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {suppliers.map((s) => (
-                <li key={s.id} className="border-t border-charcoal/10 pt-3">
-                  <p className="font-medium">{s.name}</p>
-                  <p className="text-sm text-stone mt-1">{s.location}</p>
+                <li key={s.id} className="border-t border-dusk/10 pt-3">
+                  <p className="font-medium text-dusk">{s.name}</p>
+                  <p className="text-sm text-loam mt-1">{s.location}</p>
                 </li>
               ))}
             </ul>
           </div>
 
-          <div className="mt-16 border-t border-charcoal/10 pt-12" id="takeaway">
-            <h2 className="font-display text-3xl">Menu to go</h2>
-            <p className="mt-4 max-w-xl text-stone">
+          <div className="mt-16 border-t border-dusk/10 pt-12" id="takeaway">
+            <h2 className="font-display text-3xl text-dusk">Menu to go</h2>
+            <p className="mt-4 max-w-xl text-loam font-body">
               From our kitchen to your table — takeaway crafted with fresh local produce, to pair
               with estate wine at home. Confirm current takeaway availability when booking or by
               phone.

@@ -16,19 +16,19 @@ export default function WinePage() {
 
   return (
     <>
-      <PageHero label="Wine" title="The collection" tone="cream">
+      <PageHero label="Wine" title="The collection" tone="dusk">
         <p>
           Handcrafted on site — cool-climate wines expressive of vintage and place. Delivered within
           Australia.
         </p>
       </PageHero>
 
-      <section className="pb-20">
-        <div className="pl-5 md:pl-8 lg:pl-[max(2rem,calc((100vw-80rem)/2+2rem))] mb-16">
+      <section className="pb-20 bg-dusk text-linen">
+        <div className="pl-5 md:pl-8 lg:pl-[max(2rem,calc((100vw-80rem)/2+2rem))] mb-16 pt-10">
           <WineStrip wines={wines} label="Current releases" dominant className="pr-5 md:pr-8" />
         </div>
 
-        <div className="mx-auto max-w-7xl px-5 md:px-8">
+        <div className="mx-auto max-w-7xl px-5 md:px-8 bg-linen text-dusk py-16 -mx-0">
           <WineFinder wines={wines} />
 
           <div className="mt-16 flex flex-wrap gap-3">

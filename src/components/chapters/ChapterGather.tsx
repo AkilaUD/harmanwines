@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Reveal, SectionLabel, EditorialHeading } from "@/components/ui/Reveal";
+import { Reveal, EditorialHeading } from "@/components/ui/Reveal";
 import { MediaImage } from "@/components/ui/MediaImage";
 import { getSpaces } from "@/lib/content";
 import { media } from "@/content/media";
@@ -17,20 +17,20 @@ export function ChapterGather() {
   return (
     <section
       id="gather"
-      className="chapter-ground bg-cream py-24 md:py-32"
+      className="chapter-ground bg-linen py-20 md:py-32"
       aria-labelledby="gather-heading"
     >
       <div className="mx-auto max-w-7xl px-5 md:px-8">
         <Reveal>
-          <SectionLabel>Where will you gather?</SectionLabel>
+          <p className="label-ui text-loam">Where will you gather?</p>
           <EditorialHeading id="gather-heading">Choose the atmosphere</EditorialHeading>
-          <p className="mt-5 max-w-xl text-stone text-lg">
+          <p className="mt-5 max-w-xl font-body text-loam text-base md:text-lg">
             Inside by the fire, under the pergola with vineyard views, or at a picnic table beside
             the garden.
           </p>
         </Reveal>
 
-        <div className="mt-14 space-y-16 md:space-y-24">
+        <div className="mt-12 md:mt-14 space-y-12 md:space-y-24">
           {spaces.map((space, i) => {
             const asset = spaceMedia[space.slug] ?? media.gatherPergola;
             const reverse = i % 2 === 1;
@@ -38,29 +38,29 @@ export function ChapterGather() {
               <Reveal key={space.id} delay={i * 0.05}>
                 <Link
                   href="/visit/cellar-door"
-                  className={`grid lg:grid-cols-2 gap-8 lg:gap-14 items-center no-underline group ${
+                  className={`grid lg:grid-cols-2 gap-6 lg:gap-14 items-center no-underline group ${
                     reverse ? "lg:[&>*:first-child]:order-2" : ""
                   }`}
                 >
-                  <div className="relative aspect-[4/5] md:aspect-[3/4] overflow-hidden grain">
+                  <div className="relative aspect-[16/10] md:aspect-[3/4] overflow-hidden grain">
                     <MediaImage
                       asset={asset}
                       sizes="(max-width: 1024px) 100vw, 50vw"
                     />
                   </div>
                   <div>
-                    <p className="label-micro text-wine">
-                      {space.mood.slice(0, 2).join(" · ")}
+                    <p className="label-ui text-claret">
+                      {space.mood.slice(0, 2).join(", ")}
                     </p>
-                    <h3 className="font-display text-4xl md:text-5xl mt-4 group-hover:text-wine transition-colors">
+                    <h3 className="font-display text-3xl md:text-5xl mt-3 md:mt-4 text-dusk group-hover:underline decoration-1 underline-offset-4 leading-tight">
                       {space.name}
                     </h3>
-                    <p className="mt-5 text-stone text-lg leading-relaxed max-w-md">
+                    <p className="mt-4 md:mt-5 font-body text-loam text-base md:text-lg leading-relaxed max-w-md">
                       {space.description}
                     </p>
-                    <p className="mt-4 text-meta">{space.capacity}</p>
+                    <p className="mt-3 text-meta text-loam">{space.capacity}</p>
                     {space.petFriendly && (
-                      <p className="mt-3 label-micro text-olive">Pet-friendly area</p>
+                      <p className="mt-3 label-ui text-garden">Pet-friendly area</p>
                     )}
                   </div>
                 </Link>
@@ -69,12 +69,9 @@ export function ChapterGather() {
           })}
         </div>
 
-        <p className="mt-16">
-          <Link
-            href="/visit/book"
-            className="label-micro text-wine no-underline hover:underline"
-          >
-            Book your table →
+        <p className="mt-12 md:mt-16">
+          <Link href="/visit/book" className="link-quiet link-claret label-ui">
+            Book your table
           </Link>
         </p>
       </div>

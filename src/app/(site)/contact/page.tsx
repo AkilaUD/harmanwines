@@ -17,14 +17,14 @@ export default function ContactPage() {
 
   return (
     <>
-      <PageHero label="Contact" title="Have an enquiry? Just ask." tone="cream">
+      <PageHero label="Contact" title="Have an enquiry? Just ask." tone="linen">
         <p>We’re here Friday to Sunday — or anytime by phone and email.</p>
       </PageHero>
       <section className="pb-20">
         <div className="mx-auto max-w-7xl px-5 md:px-8 grid lg:grid-cols-2 gap-14">
           <div className="space-y-8">
             <div>
-              <p className="label-micro mb-2">Address</p>
+              <p className="label-ui text-loam mb-2">Address</p>
               <p>
                 {address.line1} ({address.line2})
                 <br />
@@ -34,19 +34,19 @@ export default function ContactPage() {
               </p>
             </div>
             <div>
-              <p className="label-micro mb-2">Phone</p>
+              <p className="label-ui text-loam mb-2">Phone</p>
               <a href={`tel:${phone.replace(/\s/g, "")}`} className="text-lg no-underline hover:underline">
                 {phone}
               </a>
             </div>
             <div>
-              <p className="label-micro mb-2">Email</p>
+              <p className="label-ui text-loam mb-2">Email</p>
               <a href={`mailto:${email}`} className="text-lg no-underline hover:underline">
                 {email}
               </a>
             </div>
             <div>
-              <p className="label-micro mb-2">Hours</p>
+              <p className="label-ui text-loam mb-2">Hours</p>
               <ul className="text-sm space-y-1">
                 {hours.map((h) => (
                   <li key={h.day}>

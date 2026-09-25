@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function GiftPage() {
   return (
     <>
-      <PageHero label="Gifts" title="Give them Harman" tone="paper">
+      <PageHero label="Gifts" title="Give them Harman" tone="linen">
         <p>
           Vouchers from $50, valid for 3 years. Redeem on site for food, wine or produce — not for
           online wine purchases. Email delivery or posted gift card available.
@@ -19,15 +19,15 @@ export default function GiftPage() {
       </PageHero>
       <section className="pb-20">
         <div className="mx-auto max-w-7xl px-5 md:px-8">
-          <div className="bg-surface border border-charcoal/10 p-2 md:p-4 min-h-[640px]">
+          <div className="embed-shell min-h-[640px]">
             <iframe
               title="Purchase Harman Wines gift voucher"
               src={nowBookItGiftSrc}
-              className="w-full min-h-[620px] border-0"
+              className="w-full min-h-[620px] border-0 bg-linen"
               loading="lazy"
             />
           </div>
-          <ul className="mt-10 max-w-2xl text-sm text-stone space-y-2 list-disc pl-5">
+          <ul className="mt-10 max-w-2xl text-sm text-loam space-y-2 list-disc pl-5 font-body">
             <li>Redeem in full at the Cellar Door and Restaurant</li>
             <li>Bring the physical voucher when redeeming</li>
             <li>Extensions: maximum 1 month after expiry by prior request and approval</li>
