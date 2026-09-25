@@ -1,26 +1,190 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Earth palette — vine, wood, paper, wine */
+  --vine: #4a5d3a;
+  --forest: #2c3a28;
+  --olive: #6b7a4e;
+  --dry-grass: #c4b48a;
+  --cream: #f3efe6;
+  --paper: #e8e0d0;
+  /* Warm wells for bottle photos — distinct from Ecwid cool-grey studio backs */
+  --linen: #ddd5c4;
+  --parchment: #d2c8b4;
+  --clay: #a67c5d;
+  --terracotta: #8f5a42;
+  --burgundy: #5c2430;
+  --plum: #3d2230;
+  --charcoal: #1f1c19;
+  --stone: #8a8578;
+  --mist: #d9d4c8;
+
+  --background: var(--cream);
+  --foreground: var(--charcoal);
+  --muted: var(--stone);
+  --accent: var(--burgundy);
+  --accent-soft: var(--vine);
+  --surface: #faf7f1;
+  --border: color-mix(in oklab, var(--charcoal) 12%, transparent);
+
+  --ease-organic: cubic-bezier(0.22, 1, 0.36, 1);
+  --duration-slow: 900ms;
+  --duration-med: 500ms;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-vine: var(--vine);
+  --color-forest: var(--forest);
+  --color-olive: var(--olive);
+  --color-dry-grass: var(--dry-grass);
+  --color-cream: var(--cream);
+  --color-paper: var(--paper);
+  --color-linen: var(--linen);
+  --color-parchment: var(--parchment);
+  --color-clay: var(--clay);
+  --color-terracotta: var(--terracotta);
+  --color-burgundy: var(--burgundy);
+  --color-plum: var(--plum);
+  --color-charcoal: var(--charcoal);
+  --color-stone: var(--stone);
+  --color-mist: var(--mist);
+  --color-surface: var(--surface);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --font-display: var(--font-display);
+  --font-sans: var(--font-sans);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), system-ui, sans-serif;
+  line-height: 1.65;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: color-mix(in oklab, var(--burgundy) 28%, transparent);
+  color: var(--charcoal);
+}
+
+a {
+  color: inherit;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.22em;
+}
+
+:focus-visible {
+  outline: 2px solid var(--burgundy);
+  outline-offset: 3px;
+}
+
+.font-display {
+  font-family: var(--font-display), Georgia, "Times New Roman", serif;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+}
+
+.label-micro {
+  font-size: 0.6875rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--muted);
+}
+
+.editorial-rule {
+  height: 1px;
+  background: var(--border);
+  border: 0;
+}
+
+.grain::after {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  opacity: 0.045;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.chapter-ground {
+  transition: background-color var(--duration-slow) var(--ease-organic);
+}
+
+@keyframes hero-ken-burns {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.04);
+  }
+}
+
+.hero-ken-burns {
+  animation: hero-ken-burns 12s var(--ease-organic) forwards;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-ken-burns {
+    animation: none;
+  }
+}
+
+.wine-rail {
+  display: flex;
+  gap: 2rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 1rem;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+
+.wine-rail > * {
+  scroll-snap-align: start;
+  flex: 0 0 min(68vw, 240px);
+}
+
+@media (min-width: 768px) {
+  .wine-rail > * {
+    flex-basis: 220px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .wine-rail > * {
+    flex-basis: 232px;
+  }
+}
+
+.prose-harman p + p {
+  margin-top: 1rem;
 }
