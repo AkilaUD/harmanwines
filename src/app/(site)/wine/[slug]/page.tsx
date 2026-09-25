@@ -54,7 +54,7 @@ export default async function WineDetailPage({ params }: Props) {
       />
       <article className="pt-28 md:pt-36 pb-20">
         <div className="mx-auto max-w-7xl px-5 md:px-8 grid lg:grid-cols-2 gap-12 lg:gap-20">
-          <div className="relative aspect-[3/4] bg-linen flex items-center justify-center px-6 py-8">
+          <div className="relative aspect-[3/4] bg-paper flex items-center justify-center px-6 py-8">
             {wine.image ? (
               <Image
                 src={wine.image}
@@ -134,7 +134,7 @@ export default async function WineDetailPage({ params }: Props) {
                     className="group block no-underline hover:text-burgundy"
                   >
                     {w.image && (
-                      <div className="relative aspect-[3/4] bg-linen mb-4 flex items-end justify-center px-3 pt-4 pb-2 overflow-hidden">
+                      <div className="relative aspect-[3/4] bg-paper mb-4 flex items-end justify-center px-3 pt-4 pb-2 overflow-hidden">
                         <Image
                           src={w.image}
                           alt=""

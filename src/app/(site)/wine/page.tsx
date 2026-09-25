@@ -24,9 +24,11 @@ export default function WinePage() {
       </PageHero>
 
       <section className="pb-20">
-        <div className="mx-auto max-w-7xl px-5 md:px-8">
-          <WineStrip wines={wines} label="Current releases" className="mb-16" />
+        <div className="pl-5 md:pl-8 lg:pl-[max(2rem,calc((100vw-80rem)/2+2rem))] mb-16">
+          <WineStrip wines={wines} label="Current releases" dominant className="pr-5 md:pr-8" />
+        </div>
 
+        <div className="mx-auto max-w-7xl px-5 md:px-8">
           <WineFinder wines={wines} />
 
           <div className="mt-16 flex flex-wrap gap-3">

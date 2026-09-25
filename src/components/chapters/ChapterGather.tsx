@@ -1,21 +1,15 @@
-import Image from "next/image";
 import Link from "next/link";
 import { Reveal, SectionLabel, EditorialHeading } from "@/components/ui/Reveal";
+import { MediaImage } from "@/components/ui/MediaImage";
 import { getSpaces } from "@/lib/content";
-import { images } from "@/content/images";
+import { media } from "@/content/media";
+import type { MediaAsset } from "@/content/media";
 
-/** Gather-only images — cellarMoment reserved for Craft. */
-const spaceImages = {
-  inside: images.gathering,
-  pergola: images.gathering,
-  picnic: images.picnicOrGarden,
-} as const;
-
-const spaceObjectPosition = {
-  inside: "object-[center_30%]",
-  pergola: "object-[center_60%]",
-  picnic: "object-cover",
-} as const;
+const spaceMedia: Record<string, MediaAsset> = {
+  inside: media.gatherInside,
+  pergola: media.gatherPergola,
+  picnic: media.gatherPicnic,
+};
 
 export function ChapterGather() {
   const spaces = getSpaces();
@@ -28,7 +22,7 @@ export function ChapterGather() {
     >
       <div className="mx-auto max-w-7xl px-5 md:px-8">
         <Reveal>
-          <SectionLabel>Where would you like to gather?</SectionLabel>
+          <SectionLabel>Where will you gather?</SectionLabel>
           <EditorialHeading id="gather-heading">Choose the atmosphere</EditorialHeading>
           <p className="mt-5 max-w-xl text-stone text-lg">
             Inside by the fire, under the pergola with vineyard views, or at a picnic table beside
@@ -36,37 +30,49 @@ export function ChapterGather() {
           </p>
         </Reveal>
 
-        <div className="mt-14 grid md:grid-cols-3 gap-8">
-          {spaces.map((space, i) => (
-            <Reveal key={space.id} delay={i * 0.08}>
-              <Link href="/visit/cellar-door" className="block group no-underline">
-                <div className="relative aspect-[4/5] overflow-hidden mb-5 bg-paper">
-                  <Image
-                    src={spaceImages[space.slug]}
-                    alt={space.name}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 33vw"
-                    className={`object-cover ${spaceObjectPosition[space.slug]}`}
-                  />
-                </div>
-                <p className="label-micro text-burgundy">{space.mood.slice(0, 2).join(" · ")}</p>
-                <h3 className="font-display text-3xl mt-3 group-hover:text-burgundy transition-colors">
-                  {space.name}
-                </h3>
-                <p className="mt-3 text-stone text-sm leading-relaxed">{space.description}</p>
-                <p className="mt-4 text-xs text-stone">{space.capacity}</p>
-                {space.petFriendly && (
-                  <p className="mt-2 label-micro text-olive">Pet-friendly area</p>
-                )}
-              </Link>
-            </Reveal>
-          ))}
+        <div className="mt-14 space-y-16 md:space-y-24">
+          {spaces.map((space, i) => {
+            const asset = spaceMedia[space.slug] ?? media.gatherPergola;
+            const reverse = i % 2 === 1;
+            return (
+              <Reveal key={space.id} delay={i * 0.05}>
+                <Link
+                  href="/visit/cellar-door"
+                  className={`grid lg:grid-cols-2 gap-8 lg:gap-14 items-center no-underline group ${
+                    reverse ? "lg:[&>*:first-child]:order-2" : ""
+                  }`}
+                >
+                  <div className="relative aspect-[4/5] md:aspect-[3/4] overflow-hidden grain">
+                    <MediaImage
+                      asset={asset}
+                      sizes="(max-width: 1024px) 100vw, 50vw"
+                    />
+                  </div>
+                  <div>
+                    <p className="label-micro text-wine">
+                      {space.mood.slice(0, 2).join(" · ")}
+                    </p>
+                    <h3 className="font-display text-4xl md:text-5xl mt-4 group-hover:text-wine transition-colors">
+                      {space.name}
+                    </h3>
+                    <p className="mt-5 text-stone text-lg leading-relaxed max-w-md">
+                      {space.description}
+                    </p>
+                    <p className="mt-4 text-meta">{space.capacity}</p>
+                    {space.petFriendly && (
+                      <p className="mt-3 label-micro text-olive">Pet-friendly area</p>
+                    )}
+                  </div>
+                </Link>
+              </Reveal>
+            );
+          })}
         </div>
 
-        <p className="mt-12">
+        <p className="mt-16">
           <Link
             href="/visit/book"
-            className="label-micro text-burgundy no-underline hover:underline"
+            className="label-micro text-wine no-underline hover:underline"
           >
             Book your table →
           </Link>

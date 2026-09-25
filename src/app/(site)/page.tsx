@@ -7,6 +7,7 @@ import { ChapterWineRail } from "@/components/chapters/ChapterWineRail";
 import { ChapterTable } from "@/components/chapters/ChapterTable";
 import { ChapterGather } from "@/components/chapters/ChapterGather";
 import { ChapterRegion } from "@/components/chapters/ChapterRegion";
+import { ChapterRecognition } from "@/components/chapters/ChapterRecognition";
 import { ChapterReturn } from "@/components/chapters/ChapterReturn";
 
 export default function HomePage() {
@@ -21,6 +22,7 @@ export default function HomePage() {
       <ChapterTable />
       <ChapterGather />
       <ChapterRegion />
+      <ChapterRecognition />
       <ChapterReturn />
     </>
   );

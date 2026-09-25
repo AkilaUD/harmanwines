@@ -1,36 +1,44 @@
 import Link from "next/link";
 import { Reveal, SectionLabel, EditorialHeading } from "@/components/ui/Reveal";
+import { MediaImage } from "@/components/ui/MediaImage";
+import { media } from "@/content/media";
 
 const day = [
-  { when: "Morning", what: "Coast — Inverloch & Bunurong" },
+  { when: "Morning", what: "Bass Coast — Inverloch & Bunurong" },
   { when: "Afternoon", what: "Harman Wines — lunch among the vines" },
-  { when: "Sunset", what: "A glass on the pergola" },
-  { when: "Evening", what: "Local stay in Bass Coast" },
+  { when: "Golden hour", what: "A glass on the pergola" },
+  { when: "Evening", what: "South Gippsland — local stay" },
 ];
 
 export function ChapterRegion() {
   return (
     <section
       id="region"
-      className="chapter-ground bg-[linear-gradient(180deg,#e8e0d0_0%,#c4b48a_100%)] py-24 md:py-32"
+      className="chapter-ground bg-paper py-24 md:py-32"
       aria-labelledby="region-heading"
     >
       <div className="mx-auto max-w-7xl px-5 md:px-8">
-        <Reveal>
-          <SectionLabel>While you’re here</SectionLabel>
-          <EditorialHeading id="region-heading">Bass Coast, in one day</EditorialHeading>
-          <p className="mt-5 max-w-xl text-charcoal/75 text-lg">
-            Wilsons Promontory, coastal drives, glamping, day spas — Harman sits inside a wider
-            Gippsland journey.
-          </p>
-        </Reveal>
+        <div className="grid lg:grid-cols-2 gap-12 items-end mb-14">
+          <Reveal>
+            <SectionLabel>While you’re here</SectionLabel>
+            <EditorialHeading id="region-heading">Bass Coast, in one day</EditorialHeading>
+            <p className="mt-5 max-w-xl text-stone text-lg">
+              Harman sits inside a wider Gippsland journey — coast, vineyard, and evening light.
+            </p>
+          </Reveal>
+          <Reveal delay={0.08}>
+            <div className="relative aspect-[3/2] overflow-hidden grain">
+              <MediaImage asset={media.regionCoast} sizes="(max-width:1024px) 100vw, 50vw" />
+            </div>
+          </Reveal>
+        </div>
 
-        <ol className="mt-14 grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <ol className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {day.map((item, i) => (
-            <Reveal key={item.when} delay={i * 0.06}>
-              <li className="border-t border-charcoal/20 pt-4">
+            <Reveal key={item.when} delay={i * 0.05}>
+              <li className="border-t border-charcoal/15 pt-5">
                 <p className="label-micro">{item.when}</p>
-                <p className="font-display text-2xl mt-3">{item.what}</p>
+                <p className="font-display text-2xl mt-3 text-balance">{item.what}</p>
               </li>
             </Reveal>
           ))}

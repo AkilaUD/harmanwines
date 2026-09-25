@@ -1,10 +1,9 @@
-import Image from "next/image";
 import Link from "next/link";
 import { Reveal, SectionLabel, EditorialHeading } from "@/components/ui/Reveal";
+import { MediaImage } from "@/components/ui/MediaImage";
 import { familyTimeline } from "@/content/seed";
-import { images } from "@/content/images";
+import { media } from "@/content/media";
 
-/** Beat 3 — wine-monograph portrait page + print folio timeline. */
 export function ChapterFamily() {
   return (
     <section
@@ -13,21 +12,20 @@ export function ChapterFamily() {
       aria-labelledby="family-heading"
     >
       <div className="mx-auto max-w-7xl px-5 md:px-8">
-        <div className="grid lg:grid-cols-[0.95fr_1.05fr] gap-12 lg:gap-16 items-start mb-20">
+        <div className="grid lg:grid-cols-[1.05fr_0.95fr] gap-12 lg:gap-16 items-end mb-16">
           <Reveal>
-            <div className="relative aspect-[4/5] overflow-hidden bg-charcoal/5">
-              <Image
-                src={images.portrait}
-                alt="David and Nicole Harman at the vineyard"
-                fill
-                sizes="(max-width: 1024px) 100vw, 45vw"
-                className="object-cover"
+            <div className="relative aspect-[4/5] overflow-hidden grain">
+              <MediaImage
+                asset={media.familyPortrait}
+                sizes="(max-width: 1024px) 100vw, 50vw"
               />
             </div>
-            <p className="mt-4 label-micro text-stone">David &amp; Nicole · Wattle Bank</p>
+            <p className="mt-4 label-micro">
+              David + Nicole Harman · Founders / Winemaker / Hosts
+            </p>
           </Reveal>
 
-          <Reveal delay={0.08} className="lg:pt-8">
+          <Reveal delay={0.08} className="lg:pb-8">
             <SectionLabel>Meet</SectionLabel>
             <EditorialHeading id="family-heading">
               David, Nicole, and the land they kept
@@ -39,20 +37,19 @@ export function ChapterFamily() {
           </Reveal>
         </div>
 
-        <div className="border-t border-charcoal/15 pt-12">
-          <p className="label-micro mb-10">A short folio</p>
-          <ol className="space-y-0">
+        {/* Horizontal folio timeline */}
+        <div className="border-t border-charcoal/15 pt-10">
+          <p className="label-micro mb-8">A short folio</p>
+          <ol className="flex gap-8 md:gap-12 overflow-x-auto pb-4 scrollbar-thin">
             {familyTimeline.map((item) => (
               <li
                 key={item.year}
-                className="grid sm:grid-cols-[6rem_1fr] gap-4 sm:gap-10 py-6 border-b border-charcoal/10"
+                className="flex-none min-w-[12rem] md:min-w-[14rem] border-l border-charcoal/15 pl-5"
               >
                 <Reveal>
-                  <p className="font-display text-3xl text-burgundy">{item.year}</p>
-                </Reveal>
-                <Reveal delay={0.04}>
-                  <h3 className="text-xl font-medium">{item.title}</h3>
-                  <p className="mt-2 text-stone max-w-xl leading-relaxed">{item.body}</p>
+                  <p className="font-display text-4xl text-wine">{item.year}</p>
+                  <h3 className="mt-3 text-lg font-medium">{item.title}</h3>
+                  <p className="mt-2 text-sm text-stone leading-relaxed">{item.body}</p>
                 </Reveal>
               </li>
             ))}
@@ -60,7 +57,7 @@ export function ChapterFamily() {
         </div>
 
         <p className="mt-12">
-          <Link href="/our-story" className="label-micro text-burgundy no-underline hover:underline">
+          <Link href="/our-story" className="label-micro text-wine no-underline hover:underline">
             Read the full story →
           </Link>
         </p>

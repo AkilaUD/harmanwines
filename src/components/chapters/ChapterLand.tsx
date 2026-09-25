@@ -1,120 +1,160 @@
 "use client";
 
-import Image from "next/image";
 import { Reveal, SectionLabel, EditorialHeading } from "@/components/ui/Reveal";
+import { MediaImage } from "@/components/ui/MediaImage";
+import { media } from "@/content/media";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
-import { images } from "@/content/images";
+
+const annotations = [
+  { label: "20 acres", detail: "Working farm & vineyard" },
+  { label: "7 km", detail: "From Bass Strait" },
+  { label: "Cool maritime", detail: "Slow ripening climate" },
+  { label: "Loam over clay", detail: "Estate soils" },
+];
 
 const seasons = [
   {
     id: "summer",
     name: "Summer",
-    light: "Long light, sea breeze across the rows",
-    activity: "Ripening fruit · kitchen garden fullness",
+    line: "Long light across the rows.",
     ground: "#c4b48a",
-    ink: "#1f1c19",
-    image: null as string | null,
+    ink: "#24221e",
+    image: null as null,
   },
   {
     id: "autumn",
     name: "Autumn",
-    light: "Gold on the vines, harvest days",
-    activity: "Vintage · paddock-to-plate abundance",
-    ground: "#a67c5d",
-    ink: "#1f1c19",
-    image: null as string | null,
+    line: "Harvest settles into the cellar.",
+    ground: "#9a6248",
+    ink: "#f6f1e7",
+    image: null as null,
   },
   {
     id: "winter",
     name: "Winter",
-    light: "Bare canes, fire indoors",
-    activity: "Pruning · firelit cellar door",
-    ground: "#2c3a28",
-    ink: "#f3efe6",
-    image: images.vinesClose,
+    line: "Rain, pruning, fire.",
+    ground: "#263a2a",
+    ink: "#f6f1e7",
+    image: media.landVines,
   },
   {
     id: "spring",
     name: "Spring",
-    light: "New growth, soft coastal air",
-    activity: "Budburst · garden waking",
-    ground: "#6b7a4e",
-    ink: "#f3efe6",
-    image: images.vineyardPortrait,
+    line: "New growth begins.",
+    ground: "#657055",
+    ink: "#f6f1e7",
+    image: media.landPortrait,
   },
 ];
 
-/** Beat 2 — seasonal paper; winter/spring earn plates; summer/autumn stay type-and-ink. */
+const mosaic = [media.mosaicVines, media.mosaicGarden, media.mosaicDetail] as const;
+
 export function ChapterLand() {
   const [season, setSeason] = useState(0);
   const s = seasons[season];
 
   return (
-    <section
-      id="land"
-      className="chapter-ground py-24 md:py-32 transition-colors duration-700 relative overflow-hidden"
-      style={{ backgroundColor: s.ground, color: s.ink }}
-      aria-labelledby="land-heading"
-    >
-      {s.image && (
-        <div className="absolute inset-y-0 right-0 w-full md:w-[48%] opacity-55 md:opacity-70 pointer-events-none">
-          <Image
-            src={s.image}
-            alt=""
-            fill
-            sizes="50vw"
-            className="object-cover"
-          />
-          <div
-            className="absolute inset-0"
-            style={{
-              background: `linear-gradient(90deg, ${s.ground} 0%, transparent 35%)`,
-            }}
-            aria-hidden
-          />
+    <section id="land" className="chapter-ground" aria-labelledby="land-heading">
+      {/* Large plate + field journal annotations */}
+      <div className="bg-paper py-20 md:py-28">
+        <div className="mx-auto max-w-7xl px-5 md:px-8">
+          <Reveal>
+            <SectionLabel>The land</SectionLabel>
+            <EditorialHeading id="land-heading">Twenty acres, one unbroken world</EditorialHeading>
+          </Reveal>
+
+          <div className="mt-12 relative">
+            <div className="relative aspect-[16/10] md:aspect-[21/9] overflow-hidden grain">
+              <MediaImage
+                asset={media.landPortrait}
+                sizes="100vw"
+              />
+            </div>
+
+            <ul className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
+              {annotations.map((a) => (
+                <li key={a.label} className="border-t border-charcoal/15 pt-4">
+                  <p className="font-display text-2xl md:text-3xl">{a.label}</p>
+                  <p className="label-micro mt-2">{a.detail}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
-      )}
-      <div className="relative z-10 mx-auto max-w-7xl px-5 md:px-8">
-        <Reveal>
-          <SectionLabel className="opacity-70">The land · The farm</SectionLabel>
-          <EditorialHeading id="land-heading">Twenty acres, one unbroken world</EditorialHeading>
-          <p className="mt-5 max-w-xl text-lg opacity-85">
-            Vines, soil, kitchen garden, chickens, sheep, alpacas, and native wildlife — a working
-            farm beside a cool-climate vineyard.
+      </div>
+
+      {/* Seasonal journal */}
+      <div
+        className="py-20 md:py-28 transition-colors duration-700 relative overflow-hidden"
+        style={{ backgroundColor: s.ground, color: s.ink }}
+      >
+        {s.image && (
+          <div className="absolute inset-y-0 right-0 w-full md:w-1/2 opacity-50 md:opacity-65 pointer-events-none">
+            <MediaImage asset={s.image} sizes="50vw" />
+            <div
+              className="absolute inset-0"
+              style={{
+                background: `linear-gradient(90deg, ${s.ground} 0%, transparent 40%)`,
+              }}
+              aria-hidden
+            />
+          </div>
+        )}
+        <div className="relative z-10 mx-auto max-w-7xl px-5 md:px-8">
+          <p className="label-micro opacity-70">Seasons</p>
+          <div className="mt-8 flex flex-wrap gap-2" role="tablist" aria-label="Seasons">
+            {seasons.map((item, i) => (
+              <button
+                key={item.id}
+                type="button"
+                role="tab"
+                aria-selected={season === i}
+                onClick={() => setSeason(i)}
+                className={cn(
+                  "px-4 py-2 text-xs tracking-[0.16em] uppercase border transition-colors",
+                  season === i
+                    ? "border-current bg-current/10"
+                    : "border-current/25 opacity-70 hover:opacity-100",
+                )}
+              >
+                {item.name}
+              </button>
+            ))}
+          </div>
+          <p className="mt-12 font-display text-4xl md:text-6xl max-w-2xl text-balance">
+            {s.line}
           </p>
-        </Reveal>
-
-        <div className="mt-12 flex flex-wrap gap-2" role="tablist" aria-label="Seasons">
-          {seasons.map((item, i) => (
-            <button
-              key={item.id}
-              type="button"
-              role="tab"
-              aria-selected={season === i}
-              onClick={() => setSeason(i)}
-              className={cn(
-                "px-4 py-2 text-xs tracking-[0.16em] uppercase border transition-colors",
-                season === i
-                  ? "border-current bg-current/10"
-                  : "border-current/25 opacity-70 hover:opacity-100",
-              )}
-            >
-              {item.name}
-            </button>
-          ))}
         </div>
+      </div>
 
-        <Reveal delay={0.1} className="mt-14 grid md:grid-cols-2 gap-10 max-w-4xl">
-          <div>
-            <p className="label-micro opacity-60 mb-3">Light</p>
-            <p className="font-display text-3xl md:text-4xl">{s.light}</p>
+      {/* Farm mosaic — editorial collage, not icon cards */}
+      <div className="bg-cream py-20 md:py-28">
+        <div className="mx-auto max-w-7xl px-5 md:px-8">
+          <Reveal>
+            <SectionLabel>The farm</SectionLabel>
+            <p className="font-display text-3xl md:text-4xl mt-3 max-w-xl">
+              Vineyard, kitchen garden, and the life between the rows
+            </p>
+          </Reveal>
+          <div className="mt-12 grid grid-cols-12 gap-3 md:gap-4">
+            <div className="col-span-12 md:col-span-7 relative aspect-[4/3] overflow-hidden">
+              <MediaImage asset={mosaic[0]} sizes="(max-width:768px) 100vw, 60vw" />
+            </div>
+            <div className="col-span-6 md:col-span-5 relative aspect-[4/5] overflow-hidden">
+              <MediaImage asset={mosaic[1]} sizes="(max-width:768px) 50vw, 40vw" />
+            </div>
+            <div className="col-span-6 md:col-span-4 relative aspect-square overflow-hidden md:-mt-24">
+              <MediaImage asset={mosaic[2]} sizes="(max-width:768px) 50vw, 30vw" />
+            </div>
+            <div className="col-span-12 md:col-span-8 flex items-end pb-2">
+              <p className="text-stone text-lg max-w-md leading-relaxed">
+                Vines, soil, kitchen garden, chickens, sheep, alpacas, and native wildlife — a
+                working farm beside a cool-climate vineyard.
+              </p>
+            </div>
           </div>
-          <div>
-            <p className="label-micro opacity-60 mb-3">On the farm</p>
-            <p className="font-display text-3xl md:text-4xl">{s.activity}</p>
-          </div>
-        </Reveal>
+        </div>
       </div>
     </section>
   );
