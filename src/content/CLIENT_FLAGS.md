@@ -4,7 +4,8 @@ Items that need Harman / client confirmation before launch. Do not invent copy.
 
 ## Generated stand-in plates
 
-- Season plates (`season-summer/autumn/winter/spring.jpg`), farm animal tiles (`farm-chickens`, `farm-banjo`, `farm-alpacas`, `farm-garden-hands`), region day plates (`region-morning`, `region-evening`), plus `place-map-path`, `return-dusk`, `craft-glass`, `recognition-texture`, and `eat-fire` under `public/images/harman/generated/` are **AI stand-ins**. Replace with real Harman photography before launch; keep real aerial/family/gather assets where already wired.
+- Season plates (`season-summer/winter/spring.jpg` — autumn now uses real vine rows), farm animal tiles (`farm-banjo`, `farm-alpacas`; chickens use real `cropped-O7I6351`), region day stand-ins replaced with real coast/sunset where possible; `place-map-path` and `recognition-texture` under `public/images/harman/generated/` remain **AI stand-ins**. `returnDusk`, `eatFire`, `craftGlass`, and `farmGardenHands` now use real plates.
+- `landPortrait` retargeted from mislabeled food file to estate aerial.
 
 ## Stale events
 
@@ -13,7 +14,7 @@ Items that need Harman / client confirmation before launch. Do not invent copy.
 ## DATA REQUIRED placeholders
 
 - Wine `tastingNotes` for all five current releases
-- Menu item lists (pizza, shared plates, non-alcoholic)
+- Menu item lists for **shared plates** and **non-alcoholic** (wood-fired pizzas + extras are wired from client food menu)
 - Journal post full bodies
 - Cookies / privacy analytics disclosure detail
 - Accessibility facility details (partial)

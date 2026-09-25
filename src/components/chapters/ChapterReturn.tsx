@@ -18,7 +18,7 @@ export function ChapterReturn() {
         />
       </div>
       <div
-        className="absolute inset-0 bg-[linear-gradient(180deg,rgba(27,30,23,0.15)_0%,rgba(27,30,23,0.45)_50%,rgba(27,30,23,0.88)_100%)]"
+        className="absolute inset-0 bg-[linear-gradient(180deg,rgba(27,30,23,0.55)_0%,rgba(27,30,23,0.25)_40%,rgba(27,30,23,0.88)_100%)]"
         aria-hidden
       />
 
@@ -33,7 +33,8 @@ export function ChapterReturn() {
           Stay for the place.
         </h2>
         <p className="mt-6 max-w-md font-body text-linen/75 text-lg">
-          {siteSettings.address.line1}, {siteSettings.address.suburb}. Bookings highly recommended.
+          Golden hour over South Gippsland — then the table. {siteSettings.address.line1},{" "}
+          {siteSettings.address.suburb}. Bookings highly recommended.
         </p>
 
         <div className="mt-10 flex flex-wrap gap-3">

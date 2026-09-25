@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { ecwidStoreId } from "@/lib/integrations";
+import { cn } from "@/lib/utils";
 
 declare global {
   interface Window {
@@ -183,41 +184,118 @@ export function EcwidBuyButton({
 
 export function EcwidStorefront() {
   const containerId = `my-store-${ecwidStoreId}`;
+  const [ready, setReady] = useState(false);
+  const [failed, setFailed] = useState(false);
 
   useEffect(() => {
     let cancelled = false;
+    let failTimer: number | undefined;
+
+    window.ecwid_script_defer = true;
+    window.ecwid_dynamic_widgets = true;
+
+    const SCRIPT_ID = "ecwid-store-script";
+    const SCRIPT_SRC = `https://app.ecwid.com/script.js?${ecwidStoreId}&data_platform=code`;
+
+    const ensureScript = () =>
+      new Promise<void>((resolve) => {
+        if (window.xProductBrowser) {
+          resolve();
+          return;
+        }
+        const existing = document.getElementById(SCRIPT_ID) as HTMLScriptElement | null;
+        if (existing) {
+          existing.addEventListener("load", () => resolve(), { once: true });
+          // already loaded path
+          if (window.xProductBrowser) resolve();
+          // poll briefly in case load already fired
+          let n = 0;
+          const id = window.setInterval(() => {
+            n += 1;
+            if (window.xProductBrowser || n > 40) {
+              window.clearInterval(id);
+              resolve();
+            }
+          }, 250);
+          return;
+        }
+        const script = document.createElement("script");
+        script.id = SCRIPT_ID;
+        script.src = SCRIPT_SRC;
+        script.async = true;
+        script.onload = () => resolve();
+        script.onerror = () => resolve();
+        document.body.appendChild(script);
+      });
 
     const mount = () => {
       if (cancelled) return;
       const el = document.getElementById(containerId);
       if (!el || !window.xProductBrowser) return;
-      if (el.dataset.ecwidMounted === "1") return;
+      if (el.dataset.ecwidMounted === "1") {
+        setReady(true);
+        return;
+      }
       el.dataset.ecwidMounted = "1";
+
+      const isDesktop = window.matchMedia("(min-width: 768px)").matches;
+
       window.xProductBrowser(
-        "categoriesPerRow=3",
-        "views=grid(3,3) list(10) table(20)",
+        isDesktop ? "categoriesPerRow=3" : "categoriesPerRow=2",
+        isDesktop
+          ? "views=grid(3,3) list(10) table(20)"
+          : "views=grid(2,3) list(10) table(20)",
         "categoryView=grid",
         "searchView=list",
         `id=${containerId}`,
       );
+      setReady(true);
+      if (failTimer) window.clearTimeout(failTimer);
     };
 
-    whenEcwidReady(mount);
+    void ensureScript().then(() => {
+      if (cancelled) return;
+      whenEcwidReady(mount);
+    });
+
+    failTimer = window.setTimeout(() => {
+      if (!cancelled && !document.getElementById(containerId)?.dataset.ecwidMounted) {
+        setFailed(true);
+      }
+    }, 15000);
 
     return () => {
       cancelled = true;
+      if (failTimer) window.clearTimeout(failTimer);
     };
   }, [containerId]);
 
   return (
-    <div className="embed-shell ecwid-storefront relative">
+    <div className="ecwid-storefront relative overflow-x-hidden bg-linen border border-dusk/10 pb-24 md:pb-8 px-2 sm:px-4 md:px-6 pt-4 md:pt-6">
+      {!ready && !failed && (
+        <div
+          className="pointer-events-none absolute inset-0 z-0 flex items-center justify-center font-ui text-sm text-loam"
+          aria-live="polite"
+        >
+          Loading checkout…
+        </div>
+      )}
+      {failed && (
+        <div className="py-16 text-center px-4">
+          <p className="font-display text-2xl text-dusk">Checkout is taking a moment</p>
+          <p className="mt-3 text-loam font-body max-w-md mx-auto">
+            Browse wines above, then open Bag when the store is ready — or refresh this page.
+          </p>
+        </div>
+      )}
       <div
-        className="pointer-events-none absolute inset-4 flex items-center justify-center text-stone label-micro"
-        aria-hidden
-      >
-        Loading shop…
-      </div>
-      <div id={containerId} className="relative z-10 min-h-[420px]" />
+        id={containerId}
+        className={cn(
+          "relative z-10 min-h-[280px] md:min-h-[400px]",
+          !ready && "opacity-0",
+          failed && "hidden",
+        )}
+      />
     </div>
   );
 }
@@ -234,7 +312,7 @@ export function EcwidBagButton({ className }: { className?: string }) {
       onClick={() => openEcwidCart()}
       className={
         className ??
-        "text-sm text-charcoal/75 hover:text-charcoal tracking-wide uppercase text-xs"
+        "font-ui text-sm text-dusk/75 hover:text-dusk transition-colors"
       }
       aria-label="Open shopping bag"
     >

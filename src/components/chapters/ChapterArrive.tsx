@@ -19,7 +19,7 @@ export function ChapterArrive() {
         />
       </div>
       <div
-        className="absolute inset-0 bg-[linear-gradient(180deg,rgba(27,30,23,0.35)_0%,rgba(27,30,23,0.08)_32%,rgba(27,30,23,0.12)_48%,rgba(27,30,23,0.82)_100%)]"
+        className="absolute inset-0 bg-[linear-gradient(180deg,rgba(27,30,23,0.58)_0%,rgba(27,30,23,0.18)_32%,rgba(27,30,23,0.2)_48%,rgba(27,30,23,0.82)_100%)]"
         aria-hidden
       />
 

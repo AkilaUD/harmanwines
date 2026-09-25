@@ -63,7 +63,7 @@ export function ChapterLand() {
 
   return (
     <section id="land" className="chapter-ground" aria-labelledby="land-heading">
-      <div className="bg-linen py-16 md:py-28">
+      <div className="bg-[color-mix(in_oklab,var(--linen)_92%,var(--garden)_8%)] py-16 md:py-28">
         <div className="mx-auto max-w-7xl px-5 md:px-8">
           <Reveal>
             <p className="label-ui text-loam">The land</p>
@@ -97,7 +97,7 @@ export function ChapterLand() {
               key={item.id}
               className={cn(
                 "absolute inset-0 transition-opacity duration-700",
-                i === season ? "opacity-55 md:opacity-70" : "opacity-0",
+                i === season ? "opacity-70 md:opacity-85" : "opacity-0",
               )}
             >
               <MediaImage asset={item.image} sizes="50vw" />
@@ -122,9 +122,18 @@ export function ChapterLand() {
               id: item.id,
               label: item.name,
               panel: (
-                <p className="font-display text-3xl md:text-6xl max-w-2xl text-balance leading-[1.05]">
-                  {item.line}
-                </p>
+                <div className="max-w-2xl">
+                  <p className="label-ui opacity-60 mb-3">
+                    0{seasons.indexOf(item) + 1} / {item.name}
+                  </p>
+                  <p className="font-display text-3xl md:text-6xl text-balance leading-[1.05]">
+                    {item.line}
+                  </p>
+                  <p className="mt-5 max-w-md font-body text-base md:text-lg opacity-80 leading-relaxed">
+                    The farm and vineyard shift with the Bass Coast year — light, work, and the table
+                    change together.
+                  </p>
+                </div>
               ),
             }))}
             tabClassName={(selected) =>

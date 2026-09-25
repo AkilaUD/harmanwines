@@ -8,16 +8,18 @@ export function ContactForm() {
 
   if (sent) {
     return (
-      <div className="border border-charcoal/10 bg-surface p-8">
-        <p className="font-display text-3xl">Thanks for writing</p>
-        <p className="mt-3 text-stone">Your mail client should open with the message ready to send.</p>
+      <div className="border border-dusk/10 bg-paper p-8">
+        <p className="font-display text-3xl text-dusk">Thanks for writing</p>
+        <p className="mt-3 text-loam font-body">
+          Your mail client should open with the message ready to send.
+        </p>
       </div>
     );
   }
 
   return (
     <form
-      className="border border-charcoal/10 bg-surface p-6 md:p-8 space-y-5"
+      className="border border-dusk/10 bg-paper p-6 md:p-8 space-y-5"
       onSubmit={(e) => {
         e.preventDefault();
         const fd = new FormData(e.currentTarget);
@@ -28,26 +30,47 @@ export function ContactForm() {
         setSent(true);
       }}
     >
-      <h2 className="font-display text-3xl">Write to us</h2>
+      <h2 className="font-display text-3xl text-dusk">Write to us</h2>
       <label className="block text-sm">
-        <span className="label-micro">Name</span>
-        <input name="name" required className="mt-2 w-full border border-charcoal/15 bg-cream px-3 py-2" />
+        <span className="label-ui text-loam">Name</span>
+        <input
+          name="name"
+          required
+          className="mt-2 w-full border border-dusk/15 bg-linen px-3 py-2.5 text-dusk font-body focus-visible:outline focus-visible:outline-2 focus-visible:outline-claret"
+        />
       </label>
       <label className="block text-sm">
-        <span className="label-micro">Email</span>
-        <input name="email" type="email" required className="mt-2 w-full border border-charcoal/15 bg-cream px-3 py-2" />
+        <span className="label-ui text-loam">Email</span>
+        <input
+          name="email"
+          type="email"
+          required
+          className="mt-2 w-full border border-dusk/15 bg-linen px-3 py-2.5 text-dusk font-body focus-visible:outline focus-visible:outline-2 focus-visible:outline-claret"
+        />
       </label>
       <label className="block text-sm">
-        <span className="label-micro">Phone</span>
-        <input name="phone" type="tel" className="mt-2 w-full border border-charcoal/15 bg-cream px-3 py-2" />
+        <span className="label-ui text-loam">Phone</span>
+        <input
+          name="phone"
+          type="tel"
+          className="mt-2 w-full border border-dusk/15 bg-linen px-3 py-2.5 text-dusk font-body focus-visible:outline focus-visible:outline-2 focus-visible:outline-claret"
+        />
       </label>
       <label className="block text-sm">
-        <span className="label-micro">Subject</span>
-        <input name="subject" className="mt-2 w-full border border-charcoal/15 bg-cream px-3 py-2" />
+        <span className="label-ui text-loam">Subject</span>
+        <input
+          name="subject"
+          className="mt-2 w-full border border-dusk/15 bg-linen px-3 py-2.5 text-dusk font-body focus-visible:outline focus-visible:outline-2 focus-visible:outline-claret"
+        />
       </label>
       <label className="block text-sm">
-        <span className="label-micro">Message</span>
-        <textarea name="message" required rows={5} className="mt-2 w-full border border-charcoal/15 bg-cream px-3 py-2" />
+        <span className="label-ui text-loam">Message</span>
+        <textarea
+          name="message"
+          required
+          rows={5}
+          className="mt-2 w-full border border-dusk/15 bg-linen px-3 py-2.5 text-dusk font-body focus-visible:outline focus-visible:outline-2 focus-visible:outline-claret"
+        />
       </label>
       <Button type="submit">Send message</Button>
     </form>

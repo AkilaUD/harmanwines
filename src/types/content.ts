@@ -41,6 +41,8 @@ export type Award = {
   title: string;
   organisation: string;
   category?: string;
+  /** Local path to medal / badge artwork */
+  badge?: string;
 };
 
 export type MenuItem = {
@@ -94,6 +96,10 @@ export type RegionPlace = {
   name: string;
   blurb: string;
   url?: string;
+  /** Local path under /images/harman/region/ */
+  image?: string;
+  /** Logo-style assets use contain on linen rather than cover */
+  imageFit?: "cover" | "contain";
 };
 
 export type SiteSettings = {

@@ -122,7 +122,7 @@ export function BookingShell() {
         )}
       </div>
 
-      <div className="embed-shell min-h-[640px]">
+      <div className="embed-shell min-h-[640px] border border-dusk/10 bg-paper overflow-hidden">
         {showWidget || step === 2 ? (
           <iframe
             title="Book a table at Harman Wines"
@@ -131,10 +131,12 @@ export function BookingShell() {
             loading="lazy"
           />
         ) : (
-          <div className="h-full min-h-[620px] flex items-center justify-center p-8 text-center text-loam font-body">
-            <p className="max-w-xs">
-              Choose an atmosphere to begin. The live availability calendar opens when you’re ready.
+          <div className="h-full min-h-[620px] flex flex-col items-center justify-center gap-4 p-8 text-center bg-[color-mix(in_oklab,var(--linen)_92%,var(--garden)_8%)]">
+            <p className="label-ui text-garden">Availability</p>
+            <p className="max-w-xs font-body text-loam text-base leading-relaxed">
+              Choose an atmosphere to begin. The live calendar opens when you’re ready.
             </p>
+            <div className="mt-2 h-px w-16 bg-dusk/15" aria-hidden />
           </div>
         )}
       </div>

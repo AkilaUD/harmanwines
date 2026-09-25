@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { PageHero } from "@/components/ui/PageHero";
 import { FunctionEnquiryForm } from "@/components/forms/FunctionEnquiryForm";
 import { siteSettings } from "@/content/seed";
+import { media } from "@/content/media";
 
 export const metadata: Metadata = {
   title: "Functions",
@@ -12,7 +13,11 @@ export const metadata: Metadata = {
 export default function FunctionsPage() {
   return (
     <>
-      <PageHero label="Private functions" title="Host your gathering among the vines" tone="dusk">
+      <PageHero
+        label="Private functions"
+        title="Host your gathering among the vines"
+        media={media.gatherPergola}
+      >
         <p>
           An intimate vineyard setting for weddings, celebrations, corporate retreats and long-table
           lunches — just minutes from Inverloch.

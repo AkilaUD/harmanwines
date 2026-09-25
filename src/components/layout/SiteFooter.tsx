@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { siteSettings } from "@/content/seed";
 import { Button } from "@/components/ui/Button";
+import { BrandLogo } from "@/components/ui/BrandLogo";
 
 const footerNav = [
   {
@@ -54,8 +55,8 @@ export function SiteFooter() {
       <div className="mx-auto max-w-7xl px-5 md:px-8 py-16 md:py-20">
         <div className="grid gap-12 lg:grid-cols-[1.3fr_2fr]">
           <div>
-            <p className="font-display text-3xl md:text-4xl">Harman Wines</p>
-            <p className="label-ui mt-3 text-linen/55">
+            <BrandLogo tone="light" width={160} className="opacity-95" />
+            <p className="label-ui mt-4 text-linen/55">
               Wattle Bank, South Gippsland, Victoria
             </p>
             <p className="mt-6 max-w-sm font-body text-linen/75 text-sm leading-relaxed">

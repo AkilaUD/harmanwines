@@ -199,6 +199,7 @@ export const awards: Award[] = [
     title: "Silver Winner",
     organisation: "Australian Tourism Awards",
     category: "Wineries, Distilleries & Breweries",
+    badge: "/images/harman/cropped-QTA-2025-Silver.-Tourism-Wineries-1_small.jpeg",
   },
   {
     id: "vta-2025-gold",
@@ -206,6 +207,7 @@ export const awards: Award[] = [
     title: "Gold Winner",
     organisation: "Victorian Tourism Awards",
     category: "Wineries, Distilleries & Breweries",
+    badge: "/images/harman/cropped-vta2025-gold-winner-reversed.jpg",
   },
   {
     id: "vta-2024-gold",
@@ -213,6 +215,7 @@ export const awards: Award[] = [
     title: "Gold Winner",
     organisation: "Victorian Tourism Awards",
     category: "Wineries, Distilleries & Breweries",
+    badge: "/images/harman/cropped-vta2025-gold-winner-reversed.jpg",
   },
   {
     id: "bcba-2026-peoples",
@@ -220,6 +223,7 @@ export const awards: Award[] = [
     title: "People’s Choice Award",
     organisation: "Bass Coast Business Awards",
     category: "Food & Beverage",
+    badge: "/images/harman/cropped-Peoples-Choice-Award.png",
   },
   {
     id: "gba-2023",
@@ -227,6 +231,7 @@ export const awards: Award[] = [
     title: "Winner",
     organisation: "Gippsland Business Awards",
     category: "Food and Wine Producers",
+    badge: "/images/harman/cropped-cropped-cropped-GBA-2023-Award.png",
   },
   {
     id: "bcba-2021-env",
@@ -249,6 +254,12 @@ export const awards: Award[] = [
     organisation: "Australian Good Food Guide",
   },
   {
+    id: "restaurant-guru-2022",
+    year: "2022",
+    title: "Recommendation",
+    organisation: "Restaurant Guru",
+  },
+  {
     id: "bcba-2019-boy",
     year: "2019",
     title: "Business of the Year",
@@ -261,6 +272,29 @@ export const awards: Award[] = [
     organisation: "Bass Coast Business Awards",
   },
 ];
+
+/** Homepage laurels pedestals — ATA Silver, VTA Gold (center), GBA Winner */
+export const featuredHomepageAwardIds = [
+  "ata-2025-silver",
+  "vta-2025-gold",
+  "gba-2023",
+] as const;
+
+/**
+ * Full homepage awards order matching live /awards
+ * (2018/2019 Business of the Year stay in seed for Our Story only).
+ */
+export const homepageAwardIds = [
+  "ata-2025-silver",
+  "vta-2025-gold",
+  "vta-2024-gold",
+  "bcba-2026-peoples",
+  "gba-2023",
+  "bcba-2021-env",
+  "vta-2021-silver",
+  "agfg-2022",
+  "restaurant-guru-2022",
+] as const;
 
 export const events: EventItem[] = [
   {
@@ -303,17 +337,103 @@ export const suppliers: Supplier[] = [
   { id: "weyhill", name: "Weyhill Garlic Farm", location: "Ranceby" },
 ];
 
-/** Menu items — full item list DATA REQUIRED from current winter menu PDF/print. Categories preserved from live site. */
+/** Menu — wood-fired pizzas from client food menu; shared plates / non-alc still DATA REQUIRED. */
 export const menuCategories: MenuCategory[] = [
   {
     id: "pizza",
-    name: "Wood-fired Pizza",
+    name: "Wood-Fired Pizzas",
     items: [
       {
-        id: "pizza-note",
-        name: "Seasonal wood-fired pizzas",
+        id: "garlic",
+        name: "Garlic",
+        description: "Garlic, mozzarella, herbs",
+        price: "$18",
+        dietary: ["VE"],
+      },
+      {
+        id: "margarita",
+        name: "Margarita",
+        description: "House sugo, mozzarella, herbs",
+        price: "$20",
+        dietary: ["VE"],
+      },
+      {
+        id: "shack-bay",
+        name: "Shack Bay",
+        description: "House sugo, ham, pineapple, mozzarella",
+        price: "$23",
+      },
+      {
+        id: "the-garden",
+        name: "The Garden",
+        description: "House sugo, mushroom, onion, capsicum, tomatoes, olives, mozzarella, herbs",
+        price: "$25",
+        dietary: ["VE"],
+      },
+      {
+        id: "pound-creek",
+        name: "Pound Creek",
         description:
-          "Featuring homegrown and local Gippsland produce. Full item list — DATA REQUIRED from current menu.",
+          "Local truffle oil, woodfire roasted pumpkin, Bassine feta, onion, pine nuts, herbs, spinach, mozzarella, balsamic glaze",
+        price: "$28",
+        dietary: ["VE", "N"],
+      },
+      {
+        id: "the-amazon",
+        name: "The Amazon",
+        description: "House sugo, ham, salami, bacon, onion, capsicum, mozzarella, BBQ sauce",
+        price: "$30",
+      },
+      {
+        id: "hot-honey",
+        name: "Hot Honey",
+        description: "House sugo, salami, mozzarella, goats cheese & hot honey",
+        price: "$30",
+      },
+      {
+        id: "the-paddock",
+        name: "The Paddock",
+        description:
+          "House sugo, slow cooked lamb, onion, tomato, Bassine feta, mozzarella, greek yoghurt, roquette",
+        price: "$32",
+      },
+      {
+        id: "wattle-bank",
+        name: "Wattle Bank",
+        description: "House relish, ham, salami, olives, Bassine feta, mozzarella, chilli flakes",
+        price: "$32",
+      },
+      {
+        id: "the-oaks",
+        name: "The Oaks",
+        description:
+          "Olive oil, garlic, caramelised onion, blue cheese, prosciutto, parmesan & roquette",
+        price: "$32",
+      },
+      {
+        id: "invy-lot",
+        name: "Invy ‘Lot’",
+        description:
+          "House sugo, ham, salami, mushroom, capsicum, onion, olives, tomatoes, mozzarella, herbs — add anchovies +$2",
+        price: "$32",
+      },
+    ],
+  },
+  {
+    id: "pizza-extras",
+    name: "Additional Charges",
+    items: [
+      {
+        id: "gf-base",
+        name: "Gluten Friendly pizza base",
+        price: "$7",
+        dietary: ["GF"],
+      },
+      {
+        id: "vegan-cheese",
+        name: "Vegan Cheese",
+        price: "$4",
+        dietary: ["VG"],
       },
     ],
   },
@@ -496,38 +616,62 @@ export const regionPlaces: RegionPlace[] = [
   {
     id: "inverloch",
     name: "In and Around Inverloch",
-    blurb: "Coastal town life minutes from the vineyard.",
-    url: "https://www.visitvictoria.com/",
+    blurb: "Coastal town life minutes from the vineyard — things to do, eat and explore.",
+    url: "https://www.visitinverloch.co/",
+    image: "/images/harman/region/inverloch-coast.webp",
   },
   {
     id: "burunong",
     name: "Bunurong Coastal Drive",
     blurb: "A scenic coastal route along Bass Coast.",
+    url: "https://www.visitvictoria.com/regions/gippsland/see-and-do/road-trips-and-itineraries/bunurong-coastal-drive",
+    image: "/images/harman/region/bunurong-drive.webp",
   },
   {
     id: "prom",
     name: "Wilsons Promontory National Park",
     blurb: "Iconic wilderness of South Gippsland.",
+    url: "https://www.parks.vic.gov.au/places-to-see/parks/wilsons-promontory-national-park",
+    image: "/images/harman/region/wilsons-prom.jpg",
   },
   {
     id: "wineries",
     name: "Wine Gippsland",
     blurb: "Fellow growers and makers across the region.",
+    url: "https://www.winegippsland.com/",
+    image: "/images/harman/region/wine-gippsland.webp",
+    imageFit: "contain",
   },
   {
     id: "stay",
     name: "Inverloch Accommodation",
     blurb: "Stay nearby after lunch among the vines.",
+    url: "https://inverlochaccommodation.com.au/",
+    image: "/images/harman/region/inverloch-stay.webp",
+    imageFit: "contain",
   },
   {
     id: "glamping",
     name: "Inverloch Glamping",
     blurb: "A different kind of night under Gippsland skies.",
+    url: "https://theinverlochglampingco.com.au/stay",
+    image: "/images/harman/region/inverloch-glamping.jpg",
   },
   {
     id: "spa",
     name: "Mind Body Soul Day Spa",
     blurb: "Restore before or after your visit.",
+    url: "https://www.mindbodydayspa.com.au/",
+    image: "/images/harman/region/mind-body-soul.png",
+    imageFit: "contain",
+  },
+  {
+    id: "destination-gippsland",
+    name: "Destination Gippsland",
+    blurb: "Explore the wider Gippsland region — coast, country and culture.",
+    url: "https://www.visitgippsland.com.au/destination-gippsland",
+    image: "/images/harman/region/destination-gippsland.png",
+    imageFit: "contain",
   },
 ];
 

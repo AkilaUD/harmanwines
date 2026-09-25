@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/ui/PageHero";
 import { BookingShell } from "@/components/booking/BookingShell";
+import { media } from "@/content/media";
 
 export const metadata: Metadata = {
   title: "Book a Table",
@@ -11,7 +12,7 @@ export const metadata: Metadata = {
 export default function BookPage() {
   return (
     <>
-      <PageHero label="Visit" title="Make a booking" tone="paper">
+      <PageHero label="Visit" title="Make a booking" media={media.gatherPergola}>
         <p>Friday & Saturday lunch and dinner · Sunday lunch. Bookings open 45 days ahead.</p>
       </PageHero>
       <section className="pb-20">

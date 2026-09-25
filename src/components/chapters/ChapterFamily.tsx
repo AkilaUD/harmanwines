@@ -1,67 +1,71 @@
 import Link from "next/link";
 import { Reveal } from "@/components/ui/Reveal";
 import { MediaImage } from "@/components/ui/MediaImage";
-import { familyTimeline } from "@/content/seed";
+import { FamilyFolio } from "@/components/ui/FamilyFolio";
+import { BrandLogo } from "@/components/ui/BrandLogo";
 import { media } from "@/content/media";
 
 export function ChapterFamily() {
   return (
     <section
       id="family"
-      className="chapter-ground bg-linen py-20 md:py-32"
+      className="relative chapter-ground overflow-hidden py-24 md:py-36 bg-linen"
       aria-labelledby="family-heading"
     >
-      <div className="mx-auto max-w-7xl px-5 md:px-8">
-        <div className="relative mb-12 md:mb-16">
+      <div className="relative z-10 mx-auto max-w-7xl px-5 md:px-8">
+        <div className="grid lg:grid-cols-[minmax(0,0.9fr)_1.1fr] gap-12 lg:gap-16 xl:gap-24 items-center mb-20 md:mb-28">
+          {/* Mobile: logo first */}
+          <Reveal className="lg:hidden">
+            <BrandLogo tone="dark" width={160} className="w-[9rem]" />
+          </Reveal>
+
           <Reveal>
-            <div className="relative aspect-[3/2] overflow-hidden grain">
+            <div className="group relative mx-auto lg:mx-0 w-full max-w-md lg:max-w-none aspect-[3/4] overflow-hidden grain rounded-none">
               <MediaImage
-                asset={media.familyPortrait}
-                sizes="(max-width: 1024px) 100vw, 90vw"
+                asset={media.familyStudio}
+                sizes="(max-width: 1024px) 90vw, 40vw"
+                className="transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] motion-safe:group-hover:scale-[1.02]"
               />
             </div>
           </Reveal>
 
-          <div className="relative z-10 -mt-10 md:-mt-20 lg:-mt-28 ml-0 md:ml-8 max-w-2xl">
-            <Reveal delay={0.08}>
-              <p className="label-ui text-loam bg-linen/90 inline-block px-1">Meet</p>
+          <Reveal delay={0.1}>
+            <div className="lg:pt-4">
+              <div className="hidden lg:block mb-10">
+                <BrandLogo tone="dark" width={176} className="w-[10rem]" />
+              </div>
+
+              <div className="flex items-center gap-4 mb-6">
+                <span className="block h-px w-8 bg-dusk/25" aria-hidden />
+                <p className="font-ui text-[0.6875rem] uppercase tracking-[0.18em] text-dusk/70">
+                  Meet · Est. 2004
+                </p>
+              </div>
+
               <h2
                 id="family-heading"
-                className="font-display text-[clamp(2.25rem,5vw,4.5rem)] mt-3 leading-[1.05] text-balance text-dusk bg-linen/90 px-1"
+                className="font-display font-normal text-[clamp(2.75rem,5vw,5.25rem)] leading-[0.95] tracking-[-0.03em] text-balance text-dusk"
               >
                 David, Nicole, and the land they kept
               </h2>
-              <p className="mt-5 max-w-xl font-body text-base md:text-lg text-loam leading-relaxed bg-linen/90 px-1 py-1">
+              <p className="mt-7 max-w-md font-body text-base md:text-lg text-loam leading-relaxed">
                 Together with children Jenna and James, dog Banjo, sheep, alpacas and free-roaming
                 chickens — a family who turned a former horse stud into a vineyard home.
               </p>
-              <p className="mt-4 label-ui text-loam">
+              <p className="mt-6 font-ui text-[0.6875rem] uppercase tracking-[0.14em] text-loam">
                 David + Nicole Harman, Founders / Winemaker / Hosts
               </p>
-            </Reveal>
-          </div>
+            </div>
+          </Reveal>
         </div>
 
-        <div className="border-t border-dusk/15 pt-8 md:pt-10">
-          <p className="label-ui mb-6 md:mb-8 text-loam">A short folio</p>
-          <ol className="folio-rail gap-8 md:gap-12">
-            {familyTimeline.map((item) => (
-              <li
-                key={item.year}
-                className="flex-none min-w-[11.5rem] md:min-w-[14rem] border-l border-dusk/15 pl-5"
-              >
-                <Reveal>
-                  <p className="font-display text-4xl text-claret">{item.year}</p>
-                  <h3 className="mt-3 text-lg font-medium text-dusk">{item.title}</h3>
-                  <p className="mt-2 text-sm text-loam leading-relaxed font-body">{item.body}</p>
-                </Reveal>
-              </li>
-            ))}
-          </ol>
-        </div>
+        <FamilyFolio />
 
-        <p className="mt-10 md:mt-12">
-          <Link href="/our-story" className="link-quiet link-claret label-ui">
+        <p className="mt-10 md:mt-14 text-center">
+          <Link
+            href="/our-story"
+            className="font-ui text-[0.6875rem] uppercase tracking-[0.16em] text-loam underline underline-offset-4 decoration-dusk/25 hover:text-claret hover:decoration-claret/40 transition-colors"
+          >
             Read the full story
           </Link>
         </p>

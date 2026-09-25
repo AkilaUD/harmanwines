@@ -4,31 +4,6 @@ import { MediaImage } from "@/components/ui/MediaImage";
 import { getSuppliers } from "@/lib/content";
 import { Button } from "@/components/ui/Button";
 import { media } from "@/content/media";
-import type { MediaAsset } from "@/content/media";
-
-const beats: {
-  label: string;
-  detail: string;
-  image: MediaAsset;
-  accent?: boolean;
-}[] = [
-  {
-    label: "Fire",
-    detail: "Wood-fired pizza from the oven",
-    image: media.eatFire,
-  },
-  {
-    label: "Garden",
-    detail: "Kitchen garden & estate produce",
-    image: media.farmGardenHands,
-    accent: true,
-  },
-  {
-    label: "Gippsland",
-    detail: "Local growers within ~30 km",
-    image: media.tableFoodWine,
-  },
-];
 
 export function ChapterTable() {
   const suppliers = getSuppliers();
@@ -36,7 +11,7 @@ export function ChapterTable() {
   return (
     <section
       id="table"
-      className="chapter-ground bg-linen py-20 md:py-32"
+      className="chapter-ground py-20 md:py-32 bg-[color-mix(in_oklab,var(--linen)_90%,var(--garden)_10%)]"
       aria-labelledby="table-heading"
     >
       <div className="mx-auto max-w-7xl px-5 md:px-8">
@@ -45,25 +20,38 @@ export function ChapterTable() {
           <EditorialHeading id="table-heading">Fire, garden, and Gippsland plates</EditorialHeading>
         </Reveal>
 
-        <div className="mt-10 md:mt-12 grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8">
-          {beats.map((c) => (
-            <div key={c.label}>
-              <div className="relative aspect-[4/5] overflow-hidden grain">
-                <MediaImage asset={c.image} sizes="(max-width:640px) 100vw, 33vw" />
-              </div>
-              <p
-                className={`font-display text-2xl md:text-3xl mt-4 leading-tight ${
-                  c.accent ? "text-garden" : "text-dusk"
-                }`}
-              >
-                {c.label}
-              </p>
-              <p className="mt-2 font-body text-loam text-sm md:text-base">{c.detail}</p>
+        {/* Uneven mosaic: pizza dominant + fire + garden */}
+        <div className="mt-10 md:mt-14 grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-5 min-w-0">
+          <Reveal className="md:col-span-7 relative aspect-[4/5] sm:aspect-[16/10] md:aspect-[5/4] overflow-hidden grain min-w-0">
+            <MediaImage
+              asset={media.tablePizza}
+              sizes="(max-width:768px) 100vw, 58vw"
+              className="transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] motion-safe:hover:scale-[1.02]"
+            />
+            <div className="absolute bottom-0 inset-x-0 p-4 sm:p-5 md:p-6 bg-gradient-to-t from-dusk/70 to-transparent">
+              <p className="font-display text-2xl md:text-3xl text-linen leading-tight">Pizza</p>
+              <p className="mt-1 font-body text-sm text-linen/80">Wood-fired from the oven</p>
             </div>
-          ))}
+          </Reveal>
+          <div className="md:col-span-5 flex flex-col gap-4 md:gap-5 min-w-0">
+            <Reveal delay={0.06} className="relative min-h-[10rem] sm:min-h-[12rem] aspect-[16/10] md:aspect-auto md:flex-1 overflow-hidden grain">
+              <MediaImage asset={media.eatFire} sizes="(max-width:768px) 100vw, 40vw" />
+              <div className="absolute bottom-0 inset-x-0 p-4 bg-gradient-to-t from-dusk/65 to-transparent">
+                <p className="font-display text-xl text-linen">Fire</p>
+                <p className="text-sm text-linen/75 font-body">The wood oven</p>
+              </div>
+            </Reveal>
+            <Reveal delay={0.1} className="relative min-h-[10rem] sm:min-h-[12rem] aspect-[16/10] md:aspect-auto md:flex-1 overflow-hidden grain">
+              <MediaImage asset={media.mosaicDetail} sizes="(max-width:768px) 100vw, 40vw" />
+              <div className="absolute bottom-0 inset-x-0 p-4 bg-gradient-to-t from-dusk/65 to-transparent">
+                <p className="font-display text-xl text-garden">Garden</p>
+                <p className="text-sm text-linen/75 font-body">Estate produce & grapes</p>
+              </div>
+            </Reveal>
+          </div>
         </div>
 
-        <div className="mt-12 md:mt-16 grid lg:grid-cols-2 gap-10 lg:gap-12 items-center">
+        <div className="mt-12 md:mt-16 grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
           <Reveal>
             <p className="font-body text-base md:text-lg text-loam leading-relaxed max-w-xl">
               Wood-fired pizzas and shared plates from the kitchen garden and local growers — made
@@ -77,15 +65,15 @@ export function ChapterTable() {
             </div>
             <p className="mt-6 text-sm text-loam font-body">
               Prefer takeaway?{" "}
-              <Link href="/visit/menu#takeaway" className="link-quiet link-claret">
+              <Link href="/takeaway" className="link-quiet link-claret">
                 Menu to go
               </Link>
             </p>
           </Reveal>
           <Reveal delay={0.08}>
-            <div className="relative aspect-[4/5] overflow-hidden">
+            <div className="relative aspect-[4/3] overflow-hidden grain">
               <MediaImage
-                asset={media.tablePizza}
+                asset={media.tableFoodWine}
                 sizes="(max-width: 1024px) 100vw, 45vw"
               />
             </div>

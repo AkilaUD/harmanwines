@@ -23,7 +23,7 @@ export default function CellarDoorPage() {
 
   return (
     <>
-      <PageHero label="Cellar Door" title="Three ways to gather" tone="linen">
+      <PageHero label="Cellar Door" title="Three ways to gather" media={media.gatherInside}>
         <p>
           Reserve a leisurely lunch or dinner, share seasonal fare, and unwind among the vines.
         </p>

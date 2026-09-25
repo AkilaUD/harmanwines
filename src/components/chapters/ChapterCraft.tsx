@@ -81,6 +81,9 @@ export function ChapterCraft() {
                 label: stage.label,
                 panel: (
                   <div className="max-w-2xl">
+                    <p className={cn("label-ui mb-3", theme.muted)}>
+                      Stage 0{craftStages.indexOf(stage) + 1} — {stage.label}
+                    </p>
                     <p className="font-display text-3xl md:text-5xl leading-tight">{stage.label}</p>
                     <p className={cn("mt-4 text-base md:text-lg font-body leading-relaxed", theme.muted)}>
                       {stage.body}

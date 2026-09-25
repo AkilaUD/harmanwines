@@ -2,6 +2,8 @@ import {
   awards,
   events,
   faqs,
+  featuredHomepageAwardIds,
+  homepageAwardIds,
   journalPosts,
   menuCategories,
   regionPlaces,
@@ -10,7 +12,7 @@ import {
   suppliers,
   wines,
 } from "@/content/seed";
-import type { Wine } from "@/types/content";
+import type { Award, Wine } from "@/types/content";
 
 /** Content accessors — swap to Sanity fetchers when NEXT_PUBLIC_SANITY_PROJECT_ID is set. */
 export function getSiteSettings() {
@@ -31,6 +33,25 @@ export function getSpaces() {
 
 export function getAwards() {
   return awards;
+}
+
+function resolveAwardsByIds(ids: readonly string[]): Award[] {
+  return ids
+    .map((id) => awards.find((a) => a.id === id))
+    .filter((a): a is Award => Boolean(a));
+}
+
+/** Homepage three-medal showcase, ordered ATA → VTA Gold → GBA */
+export function getFeaturedHomepageAwards() {
+  return resolveAwardsByIds(featuredHomepageAwardIds).filter((a) => Boolean(a.badge));
+}
+
+/** Homepage laurels: featured pedestals + remaining live awards for cascade */
+export function getHomepageAwards(): { featured: Award[]; rest: Award[] } {
+  const featured = getFeaturedHomepageAwards();
+  const featuredIds = new Set(featured.map((a) => a.id));
+  const rest = resolveAwardsByIds(homepageAwardIds).filter((a) => !featuredIds.has(a.id));
+  return { featured, rest };
 }
 
 export function getEvents() {

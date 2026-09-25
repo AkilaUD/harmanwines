@@ -13,12 +13,12 @@ const day: { when: string; what: string; image: MediaAsset }[] = [
   {
     when: "Afternoon",
     what: "Harman Wines — lunch among the vines",
-    image: media.placeAerial,
+    image: media.heroVineyard,
   },
   {
     when: "Golden hour",
-    what: "A glass on the pergola",
-    image: media.gatherPergola,
+    what: "Wilsons Promontory lookout",
+    image: media.regionWilsonsProm,
   },
   {
     when: "Evening",
@@ -28,6 +28,8 @@ const day: { when: string; what: string; image: MediaAsset }[] = [
 ];
 
 export function ChapterRegion() {
+  const [morning, ...rest] = day;
+
   return (
     <section
       id="region"
@@ -43,21 +45,44 @@ export function ChapterRegion() {
           </p>
         </Reveal>
 
-        <ol className="mt-12 md:mt-14 grid sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-          {day.map((item) => (
-            <li key={item.when}>
-              <div className="relative aspect-[3/4] overflow-hidden grain">
-                <MediaImage asset={item.image} sizes="(max-width:1024px) 50vw, 25vw" />
+        <div className="mt-12 md:mt-16 grid grid-cols-1 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)] gap-8 lg:gap-12 items-stretch">
+          <Reveal className="min-w-0">
+            <article className="relative h-full">
+              <div className="relative aspect-[4/5] sm:aspect-[16/10] lg:aspect-auto lg:min-h-[28rem] xl:min-h-[32rem] overflow-hidden grain">
+                <MediaImage asset={morning.image} sizes="(max-width:1024px) 100vw, 55vw" />
               </div>
-              <p className="label-ui text-loam mt-4">{item.when}</p>
-              <p className="font-display text-2xl mt-2 text-balance leading-tight text-dusk">
-                {item.what}
-              </p>
-            </li>
-          ))}
-        </ol>
+              <div className="mt-5 flex items-start gap-4">
+                <span className="mt-2 block h-px w-8 shrink-0 bg-claret" aria-hidden />
+                <div className="min-w-0">
+                  <p className="label-ui text-claret">{morning.when}</p>
+                  <p className="font-display text-2xl sm:text-3xl md:text-4xl mt-2 text-balance leading-tight text-dusk">
+                    {morning.what}
+                  </p>
+                </div>
+              </div>
+            </article>
+          </Reveal>
 
-        <p className="mt-12">
+          <ol className="flex flex-col gap-6 sm:gap-8 md:gap-10 justify-center min-w-0">
+            {rest.map((item, i) => (
+              <Reveal key={item.when} delay={0.06 * (i + 1)} className="min-w-0">
+                <li className="grid grid-cols-[minmax(0,5.5rem)_minmax(0,1fr)] sm:grid-cols-[minmax(0,8rem)_minmax(0,1fr)] gap-3 sm:gap-5 items-center">
+                  <div className="relative aspect-[4/5] overflow-hidden grain">
+                    <MediaImage asset={item.image} sizes="128px" />
+                  </div>
+                  <div className="border-l border-dusk/15 pl-3 sm:pl-5 min-w-0">
+                    <p className="label-ui text-loam">{item.when}</p>
+                    <p className="font-display text-lg sm:text-xl md:text-2xl mt-1.5 text-balance leading-tight text-dusk">
+                      {item.what}
+                    </p>
+                  </div>
+                </li>
+              </Reveal>
+            ))}
+          </ol>
+        </div>
+
+        <p className="mt-12 md:mt-14">
           <Link href="/visit/region" className="link-quiet link-claret label-ui">
             Explore the region
           </Link>

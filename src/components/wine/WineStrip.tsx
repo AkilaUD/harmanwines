@@ -45,7 +45,7 @@ export function WineStrip({
               className="block no-underline outline-none focus-visible:ring-2 focus-visible:ring-linen/50 focus-visible:ring-offset-2 focus-visible:ring-offset-dusk"
             >
               <div
-                className="relative aspect-[2/3] flex items-end justify-center px-4 pt-8 pb-4 overflow-hidden"
+                className="relative aspect-[3/4] md:aspect-[2/3] flex items-end justify-center px-4 pt-8 pb-4 overflow-hidden"
                 style={{ backgroundColor: ground }}
               >
                 {wine.image ? (
@@ -68,17 +68,17 @@ export function WineStrip({
                   </span>
                 )}
               </div>
-              <p className="label-ui mt-5 text-linen/55">
+            <div className="mt-5 min-h-[7.5rem] flex flex-col">
+              <p className="label-ui text-linen/55">
                 {wine.variety}, {wine.vintage}
               </p>
-              <h3
-                className="font-display italic text-3xl md:text-4xl mt-2 leading-[1.1] text-balance text-linen decoration-1 underline-offset-4 group-hover:underline"
-              >
+              <h3 className="font-display italic text-2xl md:text-3xl mt-2 leading-[1.15] text-balance text-linen decoration-1 underline-offset-4 group-hover:underline">
                 {wine.name}
               </h3>
-              <p className="mt-3 font-ui text-sm tracking-wide text-linen/70">
+              <p className="mt-auto pt-3 font-ui text-sm tracking-wide text-linen/70">
                 {formatPrice(wine.price)}
               </p>
+            </div>
             </Link>
             <div className="mt-4 flex flex-wrap gap-5">
               <Link
@@ -87,7 +87,7 @@ export function WineStrip({
               >
                 View wine
               </Link>
-              <Link href="/shop" className="link-quiet label-ui text-linen/55 hover:text-linen">
+              <Link href="/shop#checkout" className="link-quiet label-ui text-linen/55 hover:text-linen">
                 Buy
               </Link>
             </div>

@@ -4,6 +4,7 @@ import { MediaImage } from "@/components/ui/MediaImage";
 import { getSpaces } from "@/lib/content";
 import { media } from "@/content/media";
 import type { MediaAsset } from "@/content/media";
+import { cn } from "@/lib/utils";
 
 const spaceMedia: Record<string, MediaAsset> = {
   inside: media.gatherInside,
@@ -30,25 +31,44 @@ export function ChapterGather() {
           </p>
         </Reveal>
 
-        <div className="mt-12 md:mt-14 space-y-12 md:space-y-24">
+        <div className="mt-12 md:mt-16 space-y-16 md:space-y-28">
           {spaces.map((space, i) => {
             const asset = spaceMedia[space.slug] ?? media.gatherPergola;
-            const reverse = i % 2 === 1;
+            const isHero = i === 0;
+            const reverse = i === 1;
+
             return (
               <Reveal key={space.id} delay={i * 0.05}>
                 <Link
                   href="/visit/cellar-door"
-                  className={`grid lg:grid-cols-2 gap-6 lg:gap-14 items-center no-underline group ${
-                    reverse ? "lg:[&>*:first-child]:order-2" : ""
-                  }`}
+                  className={cn(
+                    "grid gap-6 lg:gap-12 items-center no-underline group",
+                    isHero
+                      ? "lg:grid-cols-1"
+                      : "lg:grid-cols-2",
+                    reverse && "lg:[&>*:first-child]:order-2",
+                  )}
                 >
-                  <div className="relative aspect-[16/10] md:aspect-[3/4] overflow-hidden grain">
+                  <div
+                    className={cn(
+                      "relative overflow-hidden grain",
+                      isHero
+                        ? "aspect-[16/10] md:aspect-[21/9]"
+                        : "aspect-[16/10] md:aspect-[4/5] max-w-xl lg:max-w-none",
+                      !isHero && i === 2 && "lg:ml-auto w-full lg:max-w-[85%]",
+                    )}
+                  >
                     <MediaImage
                       asset={asset}
-                      sizes="(max-width: 1024px) 100vw, 50vw"
+                      sizes={
+                        isHero
+                          ? "100vw"
+                          : "(max-width: 1024px) 100vw, 45vw"
+                      }
+                      className="transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] motion-safe:group-hover:scale-[1.02]"
                     />
                   </div>
-                  <div>
+                  <div className={cn("min-w-0", isHero && "max-w-2xl")}>
                     <p className="label-ui text-claret">
                       {space.mood.slice(0, 2).join(", ")}
                     </p>
