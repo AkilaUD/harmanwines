@@ -210,6 +210,14 @@ export const awards: Award[] = [
     badge: "/images/harman/cropped-vta2025-gold-winner-reversed.jpg",
   },
   {
+    id: "bcba-2025-peoples",
+    year: "2025",
+    title: "People’s Choice Award",
+    organisation: "Bass Coast Business Awards",
+    category: "Food & Beverage",
+    badge: "/images/harman/cropped-Peoples-Choice-Award.png",
+  },
+  {
     id: "vta-2024-gold",
     year: "2024",
     title: "Gold Winner",
@@ -218,12 +226,12 @@ export const awards: Award[] = [
     badge: "/images/harman/cropped-vta2025-gold-winner-reversed.jpg",
   },
   {
-    id: "bcba-2026-peoples",
-    year: "2026",
-    title: "People’s Choice Award",
-    organisation: "Bass Coast Business Awards",
-    category: "Food & Beverage",
-    badge: "/images/harman/cropped-Peoples-Choice-Award.png",
+    id: "ata-2024-finalist",
+    year: "2024",
+    title: "Finalist",
+    organisation: "Australian Tourism Awards",
+    category: "Wineries, Distilleries & Breweries",
+    badge: "/images/harman/cropped-QATA-24-Finalist-Badge.png",
   },
   {
     id: "gba-2023",
@@ -234,18 +242,25 @@ export const awards: Award[] = [
     badge: "/images/harman/cropped-cropped-cropped-GBA-2023-Award.png",
   },
   {
-    id: "bcba-2021-env",
-    year: "2021",
-    title: "Winner",
+    id: "bcba-2023-peoples",
+    year: "2023",
+    title: "People’s Choice Award",
     organisation: "Bass Coast Business Awards",
-    category: "Environment & Sustainability",
+    category: "Food & Beverage",
   },
   {
-    id: "vta-2021-silver",
-    year: "2021",
-    title: "Silver Winner",
+    id: "vta-2022-bronze",
+    year: "2022",
+    title: "Bronze",
     organisation: "Victorian Tourism Awards",
     category: "Wineries, Distilleries & Breweries",
+  },
+  {
+    id: "bcba-2022-peoples",
+    year: "2022",
+    title: "People’s Choice Award",
+    organisation: "Bass Coast Business Awards",
+    category: "Food and Beverage",
   },
   {
     id: "agfg-2022",
@@ -260,16 +275,65 @@ export const awards: Award[] = [
     organisation: "Restaurant Guru",
   },
   {
+    id: "vta-2021-silver",
+    year: "2021",
+    title: "Silver Winner",
+    organisation: "Victorian Tourism Awards",
+    category: "Wineries, Distilleries & Breweries",
+  },
+  {
+    id: "bcba-2021-resilience",
+    year: "2021",
+    title: "Winner",
+    organisation: "Bass Coast Business Awards",
+    category: "Resilience",
+  },
+  {
+    id: "bcba-2021-env",
+    year: "2021",
+    title: "Winner",
+    organisation: "Bass Coast Business Awards",
+    category: "Environment & Sustainability",
+  },
+  {
     id: "bcba-2019-boy",
     year: "2019",
     title: "Business of the Year",
     organisation: "Bass Coast Business Awards",
   },
   {
+    id: "gba-2019",
+    year: "2019",
+    title: "Winner",
+    organisation: "Gippsland Business Awards",
+    category: "Food and Wine Producers",
+  },
+  {
+    id: "bcba-2019-env",
+    year: "2019",
+    title: "Winner",
+    organisation: "Bass Coast Business Awards",
+    category: "Environment & Sustainability",
+  },
+  {
+    id: "bcba-2019-peoples",
+    year: "2019",
+    title: "People’s Choice Award",
+    organisation: "Bass Coast Business Awards",
+    category: "Hospitality",
+  },
+  {
     id: "bcba-2018-boy",
     year: "2018",
     title: "Business of the Year",
     organisation: "Bass Coast Business Awards",
+  },
+  {
+    id: "bcba-2018-excellence",
+    year: "2018",
+    title: "Winner",
+    organisation: "Bass Coast Business Awards",
+    category: "Business Excellence (0–5 employees)",
   },
 ];
 
@@ -288,7 +352,7 @@ export const homepageAwardIds = [
   "ata-2025-silver",
   "vta-2025-gold",
   "vta-2024-gold",
-  "bcba-2026-peoples",
+  "bcba-2025-peoples",
   "gba-2023",
   "bcba-2021-env",
   "vta-2021-silver",
@@ -746,5 +810,42 @@ export const sustainabilityPillars = [
     id: "community",
     title: "Community",
     body: "Sustainable Tourism Accreditation, EcoStar Accreditation, and the Tourism Emissions Reduction Commitment (TERC) Program.",
+  },
+];
+
+/** Passions & Philosophy — mirrors live /about */
+export const philosophyPillars = [
+  {
+    id: "local-produce",
+    title: "Local produce",
+    body: "Our kitchen garden produces seasonal fruit, vegetables and herbs used in food platters and pizzas, and to make our relishes and sauces.",
+  },
+  {
+    id: "sustainability",
+    title: "Sustainability",
+    body: "Everything at Harman Wines keeps sustainability in mind. We strive every day to make the farm more sustainable and regenerative.",
+  },
+  {
+    id: "family-environment",
+    title: "Relaxed family environment",
+    body: "Visitors come to Meet, Eat & Drink — with family and friends — in a relaxed, comfortable setting surrounded by tranquil views.",
+  },
+];
+
+export const accreditationBadges = [
+  {
+    id: "ecostar",
+    src: "/images/harman/ECOSTAR.png",
+    alt: "EcoStar Accreditation",
+  },
+  {
+    id: "sustainable-tourism",
+    src: "/images/harman/Sustainable1.png",
+    alt: "Sustainable Tourism Accreditation",
+  },
+  {
+    id: "terc",
+    src: "/images/harman/TERC-qrcode.png",
+    alt: "Tourism Emissions Reduction Commitment",
   },
 ];

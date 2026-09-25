@@ -158,7 +158,11 @@ export function SiteHeader() {
         )}
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 md:px-8">
-          <Link href="/" className="group flex flex-col no-underline gap-1 shrink-0">
+          <Link
+            href="/"
+            className="group flex flex-col no-underline gap-1 shrink-0"
+            onClick={() => setOpen(false)}
+          >
             <BrandLogo
               tone={onHero ? "light" : "dark"}
               width={onHero ? 132 : 120}
@@ -285,7 +289,7 @@ export function SiteHeader() {
           <div className="flex items-center gap-2 lg:hidden">
             <EcwidBagButton
               className={cn(
-                "label-ui px-2 transition-colors",
+                "label-ui inline-flex h-11 items-center px-2 transition-colors",
                 onHero
                   ? "text-linen hover:text-linen/90"
                   : "text-dusk/70 hover:text-dusk",
@@ -341,7 +345,7 @@ export function SiteHeader() {
         aria-modal="true"
         aria-label="Menu"
         className={cn(
-          "fixed inset-0 z-40 bg-linen pt-24 px-6 pb-10 overflow-y-auto transition-opacity duration-300 lg:hidden",
+          "fixed inset-0 z-40 bg-linen pt-20 px-6 pb-10 overflow-y-auto transition-opacity duration-300 lg:hidden",
           open
             ? "opacity-100 pointer-events-auto visible"
             : "opacity-0 pointer-events-none invisible",
@@ -349,9 +353,6 @@ export function SiteHeader() {
         aria-hidden={!open}
         {...(!open ? { inert: true as const } : {})}
       >
-        <div className="mb-8">
-          <BrandLogo tone="dark" width={120} />
-        </div>
         <nav className="flex flex-col gap-1" aria-label="Mobile">
           {navItems.map((item, i) => {
             const hasChildren = Boolean(item.children?.length);
