@@ -818,17 +818,17 @@ export const philosophyPillars = [
   {
     id: "local-produce",
     title: "Local produce",
-    body: "Our kitchen garden produces seasonal fruit, vegetables and herbs used in food platters and pizzas, and to make our relishes and sauces.",
+    body: "Our kitchen garden produces our own seasonal fruit and vegetables, herbs that is used in our food platters and pizzas and to make our relishes and sauces.",
   },
   {
     id: "sustainability",
     title: "Sustainability",
-    body: "Everything at Harman Wines keeps sustainability in mind. We strive every day to make the farm more sustainable and regenerative.",
+    body: "All things that happen at Harman Wines have sustainability practices in mind. We strive every day to find new ways to make our farm more sustainable and regenerative as possible.",
   },
   {
     id: "family-environment",
     title: "Relaxed family environment",
-    body: "Visitors come to Meet, Eat & Drink — with family and friends — in a relaxed, comfortable setting surrounded by tranquil views.",
+    body: "Visitors can come along and “Meet, Eat & Drink” — with family and friends, while enjoying our hospitality in a relaxed comfortable environment surrounded by the tranquil views.",
   },
 ];
 

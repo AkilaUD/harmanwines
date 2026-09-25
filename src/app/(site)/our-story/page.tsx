@@ -19,8 +19,6 @@ export const metadata: Metadata = {
     "David and Nicole Harman — family vineyard, winemaking, sustainability and awards at Wattle Bank, South Gippsland.",
 };
 
-const farmLife = [media.farmChickens, media.farmAlpacas, media.farmGardenHands] as const;
-
 export default function OurStoryPage() {
   const awards = getAwards();
   const badged = awards.filter((a) => a.badge);
@@ -28,13 +26,12 @@ export default function OurStoryPage() {
   return (
     <>
       <PageHero
-        label="Our Story"
-        title="Born from a bare patch of farmland"
-        media={media.landVines}
+        label="About"
+        title="The Harmans"
+        media={media.aboutVineyard}
       >
         <p>
-          What began in 2004 as a former horse stud became a lifelong dream — vines, orchard,
-          kitchen garden, winery and cellar door, opened in November 2018.
+          A family-owned vineyard, winery and cellar door at Wattle Bank — Meet, Eat &amp; Drink.
         </p>
       </PageHero>
 
@@ -50,24 +47,31 @@ export default function OurStoryPage() {
               <p>
                 We’re David and Nicole Harman, the founders and proud owners of Harman Wines.
                 Together with our two children, Jenna and James, our dog Banjo, a few sheep,
-                alpacas, and free-roaming chickens, we’ve created something truly special here.
+                alpacas, and some free-roaming chickens, we’ve created something truly special
+                here.
               </p>
               <p>
-                Our journey began in 2004 when we purchased a former horse stud. Armed with big
-                dreams and determination, we gradually transformed the land — planting vineyards,
-                establishing orchards and a kitchen garden, and building our winery, cellar door,
-                and restaurant.
+                Our journey began in 2004 when we purchased a 10-acre former horse stud. Armed with
+                big dreams and determination, we gradually transformed the land — planting
+                vineyards, establishing orchards and a kitchen garden, and building our winery,
+                cellar door, and restaurant.
               </p>
               <p>
                 Harman Wines officially opened in November 2018. Since then, our family-owned and
                 operated vineyard and winery in Wattle Bank has become a beloved destination for
-                visitors from across the country — now known as one of the region’s premier wine
-                tourism experiences.
+                visitors from across the country.
               </p>
               <p>
-                Meet — connect with family and friends. Eat — wood-fired pizzas and tapas from
-                fresh local ingredients. Drink — cool-climate wines and local beverages, in a
-                relaxed setting with sweeping views of the landscape we call home.
+                Now known as one of the region’s premier wine tourism experiences, we take pride in
+                sharing what we’ve built with every guest who walks through our doors.
+              </p>
+              <p>
+                Our motto, “Meet, Eat &amp; Drink,” says it all: Meet — connect with family and
+                friends. Eat — savour our full menu of tapas and woodfired pizzas, made with fresh,
+                local ingredients. Drink — enjoy our cool-climate wines alongside a selection of
+                local beverages, alcoholic and non-alcoholic. All of this comes together in a
+                relaxed, welcoming setting with sweeping views of the peaceful landscape we call
+                home.
               </p>
             </div>
           </div>
@@ -82,19 +86,27 @@ export default function OurStoryPage() {
                 style={{ objectPosition: media.familyStudio.focalPoint }}
               />
             </div>
-            <ul className="grid grid-cols-3 gap-3">
-              {farmLife.map((asset) => (
-                <li key={asset.id} className="relative aspect-square overflow-hidden grain">
-                  <Image
-                    src={asset.src}
-                    alt={asset.alt}
-                    fill
-                    sizes="(max-width: 1024px) 30vw, 12vw"
-                    className="object-cover"
-                    style={{ objectPosition: asset.focalPoint }}
-                  />
-                </li>
-              ))}
+            <ul className="grid grid-cols-2 gap-3">
+              <li className="relative aspect-[4/3] overflow-hidden grain">
+                <Image
+                  src={media.familyTogether.src}
+                  alt={media.familyTogether.alt}
+                  fill
+                  sizes="(max-width: 1024px) 50vw, 22vw"
+                  className="object-cover"
+                  style={{ objectPosition: media.familyTogether.focalPoint }}
+                />
+              </li>
+              <li className="relative aspect-[4/3] overflow-hidden grain">
+                <Image
+                  src={media.farmChickens.src}
+                  alt={media.farmChickens.alt}
+                  fill
+                  sizes="(max-width: 1024px) 50vw, 22vw"
+                  className="object-cover"
+                  style={{ objectPosition: media.farmChickens.focalPoint }}
+                />
+              </li>
             </ul>
           </div>
         </div>
@@ -108,22 +120,22 @@ export default function OurStoryPage() {
         <div className="mx-auto max-w-7xl px-5 md:px-8 grid lg:grid-cols-2 gap-12 items-center">
           <div className="relative aspect-[4/3] overflow-hidden grain order-2 lg:order-1">
             <Image
-              src={media.landVines.src}
-              alt={media.landVines.alt}
+              src={media.aboutVineyard.src}
+              alt={media.aboutVineyard.alt}
               fill
               sizes="(max-width: 1024px) 100vw, 50vw"
               className="object-cover"
-              style={{ objectPosition: media.landVines.focalPoint }}
+              style={{ objectPosition: media.aboutVineyard.focalPoint }}
             />
           </div>
           <div className="order-1 lg:order-2">
-            <p className="label-ui text-linen/50 mb-4">The vineyard</p>
-            <h2 className="font-display text-4xl md:text-5xl">Cool climate, coastal air</h2>
+            <p className="label-ui text-linen/50 mb-4">Our vineyards</p>
+            <h2 className="font-display text-4xl md:text-5xl">Our Vineyards</h2>
             <div className="mt-6 space-y-4 text-linen/80 font-body max-w-xl">
               <p>
                 Nestled on a 20-acre farm just 7 kilometres inland from the Bass Strait coastline,
-                our vineyard sits in the picturesque rural setting of Wattle Bank, near Inverloch,
-                in Victoria’s Bass Coast region.
+                our vineyard is located in the picturesque rural setting of Wattle Bank, near
+                Inverloch, in Victoria’s beautiful Bass Coast region.
               </p>
               <p>
                 This unique location benefits from a cool, maritime-influenced climate. In the
@@ -132,9 +144,10 @@ export default function OurStoryPage() {
                 balanced flavours in our fruit.
               </p>
               <p>
-                First vines were planted in 2008 on rich loam soils over clay. We manage the land
-                with a sustainable approach that blends traditional farming practices with soil
-                health at the centre.
+                Our first vines were planted in 2008, and we’ve continued expanding ever since. The
+                vineyard is established on rich loam soils over clay, and we manage the land with a
+                sustainable approach that blends traditional farming practices with soil health
+                being the central theme.
               </p>
             </div>
           </div>
@@ -147,34 +160,38 @@ export default function OurStoryPage() {
             <div>
               <p className="label-ui text-loam mb-4">Winemaking</p>
               <h2 className="font-display text-4xl md:text-5xl max-w-2xl text-dusk">
-                Meet the winemaker — David Harman
+                Meet the Winemaker – David Harman
               </h2>
               <div className="mt-6 max-w-2xl space-y-4 text-loam text-lg font-body">
                 <p>
-                  Owner and winemaker David Harman leads winemaking with passion, precision, and a
-                  deep respect for place. Originally trained in the IT industry, he eventually
-                  followed a calling rooted in his love for Pinot Noir and long-standing ties to
-                  the South Gippsland coast.
+                  Owner and winemaker David Harman leads the winemaking at Harman Wines with
+                  passion, precision, and a deep respect for place. Originally trained in the IT
+                  industry, David eventually followed a calling he could no longer ignore — one
+                  rooted in his love for Pinot Noir and long-standing ties to the South Gippsland
+                  coast. The decision to plant vines and craft wines in this cool,
+                  maritime-influenced region came naturally.
                 </p>
                 <p>
-                  Over many vintages, David’s style has matured through hands-on experimentation
-                  and a return to time-honoured, old-world techniques — many often overlooked in
-                  today’s fast-paced industry. He focuses on premium, cool-climate wines that are
-                  expressive of their origin and vintage.
+                  Over many vintages, and with the establishment of the vineyard, winery, and
+                  cellar door, David’s winemaking style has matured through hands-on experimentation
+                  and a return to time-honoured, old-world techniques — many of which are often
+                  overlooked in today’s fast-paced industry.
                 </p>
                 <p>
-                  All wines are handmade with minimal intervention: wild fermentations are common,
-                  while fining and filtering are rarely used. The result is a range that speaks
-                  authentically of the land and the season in which it was born.
+                  David focuses on producing premium, cool-climate wines that are expressive of
+                  their origin and vintage. All wines are handmade with minimal intervention: wild
+                  fermentations are common, while fining and filtering are rarely used. The result
+                  is a range of wines that speak authentically of the land they’re grown on and the
+                  season in which they were born.
                 </p>
               </div>
             </div>
-            <div className="relative aspect-[4/3] overflow-hidden grain">
+            <div className="relative aspect-[3/4] max-h-[36rem] overflow-hidden grain lg:justify-self-end w-full">
               <Image
                 src={media.craftCellar.src}
                 alt={media.craftCellar.alt}
                 fill
-                sizes="(max-width: 1024px) 100vw, 45vw"
+                sizes="(max-width: 1024px) 100vw, 40vw"
                 className="object-cover"
                 style={{ objectPosition: media.craftCellar.focalPoint }}
               />
@@ -193,50 +210,54 @@ export default function OurStoryPage() {
 
       <section className="py-20 md:py-28 bg-paper" id="sustainability">
         <div className="mx-auto max-w-7xl px-5 md:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <p className="label-ui text-loam mb-4">Sustainability</p>
-              <h2 className="font-display text-4xl md:text-5xl max-w-2xl text-dusk">
-                Not a slogan — how the farm runs
-              </h2>
-              <div className="mt-5 max-w-2xl space-y-4 text-loam font-body">
-                <p>
-                  Sustainability isn’t a separate strategy at Harman Wines — it’s part of how we
-                  run our vineyard, winery, cellar door and kitchen every day. As a family-owned
-                  business deeply connected to Gippsland, we look for practical ways to reduce our
-                  environmental impact and make the farm more regenerative for the future.
-                </p>
-                <p>
-                  Solar and battery storage power refrigeration, air conditioning and the bottling
-                  line. Rainwater from our roofs is captured for cellar door and winery use. An
-                  environmentally friendly worm-farm septic system treats wastewater and returns
-                  nutrients to gardens, lawns and vines.
-                </p>
-                <p>
-                  Our kitchen garden supplies seasonal fruit, vegetables and herbs for pizzas,
-                  tapas, relishes and sauces — sourced on-property or within about 30km where
-                  possible. Visitors are welcome to wander through the garden and see what’s
-                  growing. Chickens help with vineyard maintenance and kitchen scraps while
-                  providing natural manure. We continue to reduce chemical inputs and use practices
-                  such as flame weeding.
-                </p>
-                <p>
-                  Responsible tourism has been recognised through Sustainable Tourism and EcoStar
-                  accreditation, the Tourism Emissions Reduction Commitment (TERC) program, and
-                  Bass Coast Business Awards for Environment and Sustainability.
-                </p>
-              </div>
-            </div>
-            <div className="relative aspect-[4/3] overflow-hidden grain">
-              <Image
-                src={media.sustainabilitySolar.src}
-                alt={media.sustainabilitySolar.alt}
-                fill
-                sizes="(max-width: 1024px) 100vw, 50vw"
-                className="object-cover"
-                style={{ objectPosition: media.sustainabilitySolar.focalPoint }}
-              />
-            </div>
+          <p className="label-ui text-loam mb-4">Sustainability</p>
+          <h2 className="font-display text-4xl md:text-5xl max-w-3xl text-dusk">Sustainability</h2>
+          <div className="mt-5 max-w-3xl space-y-4 text-loam font-body">
+            <p>
+              Sustainability isn’t a separate strategy at Harman Wines — it’s part of how we run
+              our vineyard, winery, cellar door and kitchen every day.
+            </p>
+            <p>
+              As a family-owned business deeply connected to Gippsland, we are always looking for
+              practical ways to reduce our environmental impact, care for our land and make our
+              farm more sustainable and regenerative for the future.
+            </p>
+            <p>
+              Our winery operates using solar power and battery storage, powering everything from
+              refrigeration and air conditioning to our bottling line. Rainwater from our roofs is
+              captured and stored in tanks for use throughout the cellar door and winery. Our
+              environmentally friendly worm farm septic system naturally treats wastewater and
+              biodegradable waste from across the property. The resulting nutrients are returned to
+              our gardens, lawns and vineyard.
+            </p>
+            <p>
+              Our expanded kitchen garden is an important part of our paddock-to-plate philosophy,
+              producing seasonal fruit, vegetables and herbs used by our chefs in our pizzas,
+              tapas, relishes and sauces. Produce is sourced from our own property or where
+              possible, within 30km of Harman Wines. Visitors are welcome to wander through the
+              garden, see what’s growing and experience another part of the connection between our
+              farm and their plate.
+            </p>
+            <p>
+              Our chickens happily help with vineyard maintenance and enjoy kitchen scraps while
+              providing natural manure for our kitchen garden and vines. We continue to reduce
+              chemical inputs and use practices such as flame weeding to help care for our soils
+              and surrounding environment. We are proud to see our soils becoming healthier and
+              native wildlife continuing to thrive across the property — including the occasional
+              resident koala.
+            </p>
+            <p>
+              Our commitment to responsible tourism has been recognised through Sustainable Tourism
+              Accreditation and EcoStar Accreditation, and we have completed the Tourism Emissions
+              Reduction Commitment (TERC) Program. We are also proud past winners of the Bass Coast
+              Business Awards for Environment and Sustainability — recognition that continues to
+              inspire us to find new ways to do better.
+            </p>
+            <p>
+              For us, sustainability is about continuous improvement: looking after our land,
+              supporting our local community and ensuring Harman Wines remains a special place for
+              generations to come.
+            </p>
           </div>
 
           <ul className="mt-14 flex flex-wrap items-center gap-8 md:gap-12">
@@ -263,14 +284,40 @@ export default function OurStoryPage() {
           <Reveal>
             <p className="label-ui text-loam mb-4">Passions &amp; philosophy</p>
             <h2 className="font-display text-4xl md:text-5xl max-w-2xl text-dusk">
-              What guides the table
+              Our Passions &amp; Philosophy
             </h2>
           </Reveal>
+
+          <div className="mt-10 md:mt-12 grid md:grid-cols-2 gap-4">
+            <div className="relative aspect-[16/10] overflow-hidden grain">
+              <Image
+                src={media.familyTogether.src}
+                alt={media.familyTogether.alt}
+                fill
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-cover"
+                style={{ objectPosition: media.familyTogether.focalPoint }}
+              />
+            </div>
+            <div className="relative aspect-[16/10] overflow-hidden grain">
+              <Image
+                src={media.farmChickens.src}
+                alt={media.farmChickens.alt}
+                fill
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-cover"
+                style={{ objectPosition: media.farmChickens.focalPoint }}
+              />
+            </div>
+          </div>
+
           <ul className="mt-14 grid md:grid-cols-3 gap-10 md:gap-12">
             {philosophyPillars.map((p, i) => (
               <li key={p.id} className="border-t border-dusk/10 pt-5">
                 <Reveal delay={0.05 * i}>
-                  <h3 className="font-display text-2xl text-dusk">{p.title}</h3>
+                  <h3 className="font-display text-2xl text-dusk uppercase tracking-wide">
+                    {p.title}
+                  </h3>
                   <p className="mt-3 text-loam font-body">{p.body}</p>
                 </Reveal>
               </li>
@@ -290,9 +337,9 @@ export default function OurStoryPage() {
 
       <section className="py-20 md:py-28 bg-paper" id="awards">
         <div className="mx-auto max-w-7xl px-5 md:px-8">
-          <p className="label-ui text-loam mb-4">Recognition</p>
+          <p className="label-ui text-loam mb-4">Awards &amp; achievements</p>
           <h2 className="font-display text-4xl md:text-5xl text-dusk">
-            We are proud of our achievements &amp; awards
+            We are super proud of our achievements &amp; awards
           </h2>
 
           {badged.length > 0 && (
@@ -333,7 +380,7 @@ export default function OurStoryPage() {
             ))}
           </ol>
           <div className="mt-12">
-            <Button href="/visit/book">Book a Table</Button>
+            <Button href="/contact">Contact us</Button>
           </div>
         </div>
       </section>

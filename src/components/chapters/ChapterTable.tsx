@@ -42,10 +42,10 @@ export function ChapterTable() {
               </div>
             </Reveal>
             <Reveal delay={0.1} className="relative min-h-[10rem] sm:min-h-[12rem] aspect-[16/10] md:aspect-auto md:flex-1 overflow-hidden grain">
-              <MediaImage asset={media.mosaicDetail} sizes="(max-width:768px) 100vw, 40vw" />
+              <MediaImage asset={media.tableSharedPlate} sizes="(max-width:768px) 100vw, 40vw" />
               <div className="absolute bottom-0 inset-x-0 p-4 bg-gradient-to-t from-dusk/65 to-transparent">
-                <p className="font-display text-xl text-garden">Garden</p>
-                <p className="text-sm text-linen/75 font-body">Estate produce & grapes</p>
+                <p className="font-display text-xl text-linen">Shared plates</p>
+                <p className="text-sm text-linen/75 font-body">Kitchen garden &amp; local growers</p>
               </div>
             </Reveal>
           </div>
