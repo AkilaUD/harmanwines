@@ -27,7 +27,7 @@ export function ChapterArrive() {
         <p className="label-micro text-cream/65">
           Wattle Bank · South Gippsland · Victoria
         </p>
-        <h1 className="font-display text-cream text-[clamp(3.25rem,11vw,7.5rem)] mt-5 max-w-4xl">
+        <h1 className="font-display text-cream text-[clamp(3.25rem,11vw,7.5rem)] mt-5 max-w-4xl leading-[1.05] tracking-tight">
           Harman Wines
         </h1>
         <p className="mt-5 max-w-md text-cream/85 text-lg md:text-xl font-light leading-relaxed">

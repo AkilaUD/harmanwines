@@ -122,12 +122,12 @@ export function BookingShell() {
         )}
       </div>
 
-      <div className="bg-surface border border-charcoal/10 min-h-[640px] p-2 md:p-4">
+      <div className="embed-shell min-h-[640px]">
         {showWidget || step === 2 ? (
           <iframe
             title="Book a table at Harman Wines"
             src={nowBookItBookingSrc}
-            className="w-full min-h-[620px] border-0"
+            className="w-full min-h-[620px] border-0 bg-cream"
             loading="lazy"
           />
         ) : (

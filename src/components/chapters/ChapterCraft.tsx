@@ -2,6 +2,7 @@
 
 import { Reveal, SectionLabel, EditorialHeading } from "@/components/ui/Reveal";
 import { MediaImage } from "@/components/ui/MediaImage";
+import { EditorialTabs } from "@/components/ui/EditorialTabs";
 import { craftStages } from "@/content/seed";
 import { media } from "@/content/media";
 import { useState } from "react";
@@ -44,38 +45,36 @@ export function ChapterCraft() {
               {stageMarks.join("  ·  ")}
             </p>
 
-            <div className="mt-8 flex flex-wrap gap-2" role="tablist">
-              {craftStages.map((stage, i) => (
-                <button
-                  key={stage.id}
-                  type="button"
-                  role="tab"
-                  aria-selected={active === i}
-                  onClick={() => setActive(i)}
-                  className={cn(
-                    "px-4 py-2 label-micro border transition-colors",
-                    active === i
-                      ? "border-cream text-cream"
-                      : "border-cream/20 text-cream/45 hover:text-cream/80",
-                  )}
-                >
-                  {stage.label}
-                </button>
-              ))}
-            </div>
-
-            <Reveal delay={0.1} className="mt-12 max-w-2xl">
-              <p className="font-display text-4xl md:text-5xl">{craftStages[active].label}</p>
-              <p className="mt-4 text-lg text-cream/70 leading-relaxed">
-                {craftStages[active].body}
-              </p>
-              <Link
-                href="/our-story#winemaking"
-                className="inline-block mt-8 label-micro text-olive no-underline hover:underline"
-              >
-                Winemaking philosophy →
-              </Link>
-            </Reveal>
+            <EditorialTabs
+              className="mt-8"
+              label="Winemaking stages"
+              index={active}
+              onIndexChange={setActive}
+              items={craftStages.map((stage) => ({
+                id: stage.id,
+                label: stage.label,
+                panel: (
+                  <div className="max-w-2xl">
+                    <p className="font-display text-4xl md:text-5xl leading-tight">{stage.label}</p>
+                    <p className="mt-4 text-lg text-cream/70 leading-relaxed">{stage.body}</p>
+                    <Link
+                      href="/our-story#winemaking"
+                      className="inline-block mt-8 label-micro text-olive-on-dark no-underline hover:underline"
+                    >
+                      Winemaking philosophy →
+                    </Link>
+                  </div>
+                ),
+              }))}
+              tabClassName={(selected) =>
+                cn(
+                  "px-4 py-2 label-micro border transition-colors",
+                  selected
+                    ? "border-cream text-cream"
+                    : "border-cream/20 text-cream/45 hover:text-cream/80",
+                )
+              }
+            />
           </div>
 
           <div className="relative aspect-[4/5] overflow-hidden bg-forest flex items-end p-8 md:p-10 grain">
@@ -87,10 +86,12 @@ export function ChapterCraft() {
             ) : (
               <div className="relative z-10">
                 <p className="label-micro text-cream/45">Next</p>
-                <p className="font-display text-4xl md:text-5xl text-cream mt-3">The collection</p>
+                <p className="font-display text-4xl md:text-5xl text-cream mt-3 leading-tight">
+                  The collection
+                </p>
                 <Link
                   href="#wine"
-                  className="inline-block mt-6 label-micro text-olive no-underline hover:underline"
+                  className="inline-block mt-6 label-micro text-olive-on-dark no-underline hover:underline"
                 >
                   Taste the vintage →
                 </Link>

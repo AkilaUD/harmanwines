@@ -5,6 +5,8 @@
   --deep-vine: #17251d;
   --forest: #263a2a;
   --olive: #657055;
+  /* Lighter olive for links/UI on deep-vine / forest (AA) */
+  --olive-on-dark: #b8c4a8;
   --earth: #75624d;
   --clay: #9a6248;
   --wine: #552f32;
@@ -13,7 +15,7 @@
   --cream: #f6f1e7;
   --charcoal: #24221e;
 
-  /* Aliases for existing utility names */
+  /* Aliases */
   --vine: var(--deep-vine);
   --burgundy: var(--wine);
   --plum: var(--deep-burgundy);
@@ -21,8 +23,10 @@
   --dry-grass: #c4b48a;
   --linen: #e5dfd0;
   --parchment: #ddd6c4;
-  --stone: #8a8578;
+  /* Warm muted — ≥4.5:1 on cream (#F6F1E7) and paper (#EFE9DC) */
+  --stone: #524e46;
   --mist: #d9d4c8;
+  --muted-on-dark: rgba(246, 241, 231, 0.72);
   --surface: var(--cream);
 
   --background: var(--cream);
@@ -47,6 +51,7 @@
   --color-deep-vine: var(--deep-vine);
   --color-forest: var(--forest);
   --color-olive: var(--olive);
+  --color-olive-on-dark: var(--olive-on-dark);
   --color-earth: var(--earth);
   --color-dry-grass: var(--dry-grass);
   --color-cream: var(--cream);
@@ -62,6 +67,7 @@
   --color-charcoal: var(--charcoal);
   --color-stone: var(--stone);
   --color-mist: var(--mist);
+  --color-muted-on-dark: var(--muted-on-dark);
   --color-surface: var(--surface);
   --color-muted: var(--muted);
   --color-accent: var(--accent);
@@ -69,160 +75,197 @@
   --font-sans: var(--font-sans);
 }
 
-* {
-  box-sizing: border-box;
-}
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
 
-html {
-  scroll-behavior: smooth;
-}
-
-@media (prefers-reduced-motion: reduce) {
   html {
-    scroll-behavior: auto;
+    scroll-behavior: smooth;
   }
 
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
-}
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-sans), system-ui, sans-serif;
-  font-size: var(--text-body);
-  line-height: 1.65;
-  text-rendering: optimizeLegibility;
-}
-
-::selection {
-  background: color-mix(in oklab, var(--wine) 28%, transparent);
-  color: var(--charcoal);
-}
-
-a {
-  color: inherit;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 0.22em;
-}
-
-:focus-visible {
-  outline: 2px solid var(--wine);
-  outline-offset: 3px;
-}
-
-.font-display {
-  font-family: var(--font-display), Georgia, "Times New Roman", serif;
-  font-weight: 400;
-  letter-spacing: -0.02em;
-  line-height: 1.05;
-}
-
-.label-micro {
-  font-size: 0.6875rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  font-weight: 500;
-  color: var(--muted);
-}
-
-.text-meta {
-  font-size: var(--text-meta);
-  letter-spacing: 0.02em;
-  color: var(--muted);
-}
-
-.editorial-rule {
-  height: 1px;
-  background: var(--border);
-  border: 0;
-}
-
-.grain::after {
-  content: "";
-  pointer-events: none;
-  position: absolute;
-  inset: 0;
-  opacity: 0.04;
-  mix-blend-mode: multiply;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-}
-
-.chapter-ground {
-  transition: background-color var(--duration-slow) var(--ease-organic);
-}
-
-/* Near-still hero settle — 3% over 20s */
-@keyframes hero-settle {
-  from {
-    transform: scale(1);
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans), system-ui, sans-serif;
+    font-size: var(--text-body);
+    line-height: 1.65;
+    text-rendering: optimizeLegibility;
   }
-  to {
-    transform: scale(1.03);
+
+  ::selection {
+    background: color-mix(in oklab, var(--wine) 28%, transparent);
+    color: var(--charcoal);
+  }
+
+  /* Inherit by default; utilities (text-wine, hover:text-*) win over this */
+  a {
+    color: inherit;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.22em;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--wine);
+    outline-offset: 3px;
   }
 }
 
-.hero-ken-burns {
-  animation: hero-settle 20s var(--ease-organic) forwards;
-  will-change: transform;
-}
+@layer components {
+  /* Family only — weight/tracking/leading via utilities */
+  .font-display {
+    font-family: var(--font-display), Georgia, "Times New Roman", serif;
+  }
 
-@media (prefers-reduced-motion: reduce) {
+  /* Size/case only — color via text-* utilities */
+  .label-micro {
+    font-size: 0.75rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .text-meta {
+    font-size: var(--text-meta);
+    letter-spacing: 0.02em;
+  }
+
+  .editorial-rule {
+    height: 1px;
+    background: var(--border);
+    border: 0;
+  }
+
+  .grain {
+    position: relative;
+  }
+
+  .grain::after {
+    content: "";
+    pointer-events: none;
+    position: absolute;
+    inset: 0;
+    opacity: 0.04;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .chapter-ground {
+    transition: background-color var(--duration-slow) var(--ease-organic);
+  }
+
+  @keyframes hero-settle {
+    from {
+      transform: scale(1);
+    }
+    to {
+      transform: scale(1.03);
+    }
+  }
+
   .hero-ken-burns {
-    animation: none;
+    animation: hero-settle 20s var(--ease-organic) forwards;
+    will-change: transform;
   }
-}
 
-/* Dominant wine gallery — one bottle large, next peeking */
-.wine-rail {
-  display: flex;
-  gap: 3rem;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  padding-bottom: 1.25rem;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: thin;
-}
+  @media (prefers-reduced-motion: reduce) {
+    .hero-ken-burns {
+      animation: none;
+    }
+  }
 
-.wine-rail > * {
-  scroll-snap-align: start;
-  flex: 0 0 min(78vw, 320px);
-}
+  .wine-rail {
+    display: flex;
+    gap: 3rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 1.25rem;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+  }
 
-@media (min-width: 768px) {
   .wine-rail > * {
-    flex-basis: min(55vw, 420px);
+    scroll-snap-align: start;
+    flex: 0 0 min(78vw, 320px);
   }
-}
 
-@media (min-width: 1024px) {
-  .wine-rail > * {
-    flex-basis: min(48vw, 480px);
+  @media (min-width: 768px) {
+    .wine-rail > * {
+      flex-basis: min(55vw, 420px);
+    }
   }
-}
 
-.wine-rail-dominant > *:first-child {
-  flex-basis: min(85vw, 520px);
-}
+  @media (min-width: 1024px) {
+    .wine-rail > * {
+      flex-basis: min(48vw, 480px);
+    }
+  }
 
-@media (min-width: 768px) {
   .wine-rail-dominant > *:first-child {
-    flex-basis: min(62vw, 560px);
+    flex-basis: min(85vw, 520px);
   }
-}
 
-.prose-harman p + p {
-  margin-top: 1rem;
-}
+  @media (min-width: 768px) {
+    .wine-rail-dominant > *:first-child {
+      flex-basis: min(62vw, 560px);
+    }
+  }
 
-.scroll-cue {
-  font-size: 0.6875rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  opacity: 0.65;
+  .prose-harman p + p {
+    margin-top: 1rem;
+  }
+
+  .scroll-cue {
+    font-size: 0.75rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    opacity: 0.65;
+  }
+
+  /* MediaImage responsive art direction */
+  .media-focal {
+    --focal: 50% 50%;
+    --focal-mobile: var(--focal);
+  }
+
+  .media-focal img,
+  .media-focal > span img {
+    object-position: var(--focal) !important;
+  }
+
+  @media (max-width: 767px) {
+    .media-focal img,
+    .media-focal > span img {
+      object-position: var(--focal-mobile) !important;
+    }
+  }
+
+  /* Branded third-party shells */
+  .embed-shell {
+    border: 1px solid color-mix(in oklab, var(--charcoal) 10%, transparent);
+    background: var(--paper);
+    padding: 1rem;
+    min-height: 28rem;
+  }
+
+  @media (min-width: 768px) {
+    .embed-shell {
+      padding: 1.5rem;
+      min-height: 36rem;
+    }
+  }
 }

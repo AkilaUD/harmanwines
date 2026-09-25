@@ -1,3 +1,7 @@
+/**
+ * Content flags for client review — see CLIENT_FLAGS.md
+ * (stale events, DATA REQUIRED gaps, hours, mailto-only forms).
+ */
 import type {
   Award,
   EventItem,

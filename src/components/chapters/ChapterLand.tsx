@@ -2,6 +2,7 @@
 
 import { Reveal, SectionLabel, EditorialHeading } from "@/components/ui/Reveal";
 import { MediaImage } from "@/components/ui/MediaImage";
+import { EditorialTabs } from "@/components/ui/EditorialTabs";
 import { media } from "@/content/media";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
@@ -56,7 +57,6 @@ export function ChapterLand() {
 
   return (
     <section id="land" className="chapter-ground" aria-labelledby="land-heading">
-      {/* Large plate + field journal annotations */}
       <div className="bg-paper py-20 md:py-28">
         <div className="mx-auto max-w-7xl px-5 md:px-8">
           <Reveal>
@@ -66,17 +66,14 @@ export function ChapterLand() {
 
           <div className="mt-12 relative">
             <div className="relative aspect-[16/10] md:aspect-[21/9] overflow-hidden grain">
-              <MediaImage
-                asset={media.landPortrait}
-                sizes="100vw"
-              />
+              <MediaImage asset={media.landPortrait} sizes="100vw" />
             </div>
 
             <ul className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
               {annotations.map((a) => (
                 <li key={a.label} className="border-t border-charcoal/15 pt-4">
-                  <p className="font-display text-2xl md:text-3xl">{a.label}</p>
-                  <p className="label-micro mt-2">{a.detail}</p>
+                  <p className="font-display text-2xl md:text-3xl leading-tight">{a.label}</p>
+                  <p className="label-micro mt-2 text-stone">{a.detail}</p>
                 </li>
               ))}
             </ul>
@@ -84,7 +81,6 @@ export function ChapterLand() {
         </div>
       </div>
 
-      {/* Seasonal journal */}
       <div
         className="py-20 md:py-28 transition-colors duration-700 relative overflow-hidden"
         style={{ backgroundColor: s.ground, color: s.ink }}
@@ -103,37 +99,37 @@ export function ChapterLand() {
         )}
         <div className="relative z-10 mx-auto max-w-7xl px-5 md:px-8">
           <p className="label-micro opacity-70">Seasons</p>
-          <div className="mt-8 flex flex-wrap gap-2" role="tablist" aria-label="Seasons">
-            {seasons.map((item, i) => (
-              <button
-                key={item.id}
-                type="button"
-                role="tab"
-                aria-selected={season === i}
-                onClick={() => setSeason(i)}
-                className={cn(
-                  "px-4 py-2 text-xs tracking-[0.16em] uppercase border transition-colors",
-                  season === i
-                    ? "border-current bg-current/10"
-                    : "border-current/25 opacity-70 hover:opacity-100",
-                )}
-              >
-                {item.name}
-              </button>
-            ))}
-          </div>
-          <p className="mt-12 font-display text-4xl md:text-6xl max-w-2xl text-balance">
-            {s.line}
-          </p>
+          <EditorialTabs
+            className="mt-8"
+            label="Seasons"
+            index={season}
+            onIndexChange={setSeason}
+            items={seasons.map((item) => ({
+              id: item.id,
+              label: item.name,
+              panel: (
+                <p className="font-display text-4xl md:text-6xl max-w-2xl text-balance leading-[1.05]">
+                  {item.line}
+                </p>
+              ),
+            }))}
+            tabClassName={(selected) =>
+              cn(
+                "px-4 py-2 text-xs tracking-[0.16em] uppercase border transition-colors",
+                selected
+                  ? "border-current bg-current/10"
+                  : "border-current/25 opacity-70 hover:opacity-100",
+              )
+            }
+          />
         </div>
       </div>
 
-      {/* Farm mosaic — editorial collage, not icon cards */}
       <div className="bg-cream py-20 md:py-28">
         <div className="mx-auto max-w-7xl px-5 md:px-8">
           <Reveal>
             <SectionLabel>The farm</SectionLabel>
-            <p className="font-display text-3xl md:text-4xl mt-3 max-w-xl">
+            <p className="font-display text-3xl md:text-4xl mt-3 max-w-xl leading-tight">
               Vineyard, kitchen garden, and the life between the rows
             </p>
           </Reveal>

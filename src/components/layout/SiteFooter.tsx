@@ -6,6 +6,7 @@ const footerNav = [
   {
     title: "Visit",
     links: [
+      { href: "/visit", label: "Plan a Visit" },
       { href: "/visit/book", label: "Book a Table" },
       { href: "/visit/menu", label: "Menu" },
       { href: "/visit/cellar-door", label: "Cellar Door" },
@@ -38,6 +39,7 @@ const footerNav = [
       { href: "/accessibility", label: "Accessibility" },
       { href: "/legal/privacy", label: "Privacy" },
       { href: "/legal/terms", label: "Terms" },
+      { href: "/legal/cookies", label: "Cookies" },
       { href: "/legal/alcohol", label: "Alcohol notice" },
     ],
   },

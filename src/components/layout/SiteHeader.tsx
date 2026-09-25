@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/Button";
 import { siteSettings } from "@/content/seed";
@@ -20,6 +20,8 @@ const links = [
 export function SiteHeader() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const toggleRef = useRef<HTMLButtonElement>(null);
+  const firstLinkRef = useRef<HTMLAnchorElement>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 48);
@@ -35,6 +37,19 @@ export function SiteHeader() {
     };
   }, [open]);
 
+  useEffect(() => {
+    if (!open) return;
+    firstLinkRef.current?.focus();
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setOpen(false);
+        toggleRef.current?.focus();
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [open]);
+
   return (
     <>
       <header
@@ -47,10 +62,10 @@ export function SiteHeader() {
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-5 md:px-8">
           <Link href="/" className="group flex flex-col no-underline">
-            <span className="font-display text-xl md:text-2xl tracking-tight text-charcoal group-[.on-hero]:text-cream">
+            <span className="font-display text-xl md:text-2xl tracking-tight leading-tight text-charcoal">
               Harman Wines
             </span>
-            <span className="label-micro mt-0.5 text-[0.6rem]">
+            <span className="label-micro mt-0.5 text-stone">
               Wattle Bank · South Gippsland
             </span>
           </Link>
@@ -60,7 +75,7 @@ export function SiteHeader() {
               <Link
                 key={l.href}
                 href={l.href}
-                className="text-sm text-charcoal/75 hover:text-charcoal no-underline transition-colors"
+                className="text-sm text-charcoal/75 hover:text-charcoal no-underline transition-colors duration-300"
               >
                 {l.label}
               </Link>
@@ -68,7 +83,7 @@ export function SiteHeader() {
           </nav>
 
           <div className="hidden md:flex items-center gap-3">
-            <EcwidBagButton className="label-micro text-charcoal/70 hover:text-charcoal" />
+            <EcwidBagButton className="label-micro text-charcoal/70 hover:text-charcoal transition-colors" />
             <Button href="/wine" variant="secondary" size="sm">
               Shop Wine
             </Button>
@@ -80,35 +95,36 @@ export function SiteHeader() {
           <div className="flex items-center gap-2 md:hidden">
             <EcwidBagButton className="label-micro text-charcoal/70 px-2" />
             <button
-            type="button"
-            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-charcoal/20"
-            aria-expanded={open}
-            aria-controls="mobile-nav"
-            aria-label={open ? "Close menu" : "Open menu"}
-            onClick={() => setOpen((v) => !v)}
-          >
-            <span className="sr-only">Menu</span>
-            <span className="flex flex-col gap-1.5" aria-hidden>
-              <span
-                className={cn(
-                  "block h-px w-5 bg-charcoal transition-transform",
-                  open && "translate-y-[3.5px] rotate-45",
-                )}
-              />
-              <span
-                className={cn(
-                  "block h-px w-5 bg-charcoal transition-opacity",
-                  open && "opacity-0",
-                )}
-              />
-              <span
-                className={cn(
-                  "block h-px w-5 bg-charcoal transition-transform",
-                  open && "-translate-y-[3.5px] -rotate-45",
-                )}
-              />
-            </span>
-          </button>
+              ref={toggleRef}
+              type="button"
+              className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-charcoal/20 transition-colors hover:border-charcoal/40"
+              aria-expanded={open}
+              aria-controls="mobile-nav"
+              aria-label={open ? "Close menu" : "Open menu"}
+              onClick={() => setOpen((v) => !v)}
+            >
+              <span className="sr-only">Menu</span>
+              <span className="flex flex-col gap-1.5" aria-hidden>
+                <span
+                  className={cn(
+                    "block h-px w-5 bg-charcoal transition-transform",
+                    open && "translate-y-[3.5px] rotate-45",
+                  )}
+                />
+                <span
+                  className={cn(
+                    "block h-px w-5 bg-charcoal transition-opacity",
+                    open && "opacity-0",
+                  )}
+                />
+                <span
+                  className={cn(
+                    "block h-px w-5 bg-charcoal transition-transform",
+                    open && "-translate-y-[3.5px] -rotate-45",
+                  )}
+                />
+              </span>
+            </button>
           </div>
         </div>
       </header>
@@ -125,11 +141,12 @@ export function SiteHeader() {
         inert={!open ? true : undefined}
       >
         <nav className="flex flex-col gap-5" aria-label="Mobile">
-          {links.map((l) => (
+          {links.map((l, i) => (
             <Link
               key={l.href}
+              ref={i === 0 ? firstLinkRef : undefined}
               href={l.href}
-              className="font-display text-3xl no-underline"
+              className="font-display text-3xl leading-tight no-underline transition-opacity hover:opacity-70"
               onClick={() => setOpen(false)}
             >
               {l.label}
@@ -143,7 +160,10 @@ export function SiteHeader() {
             <Button href="/wine" variant="secondary">
               Shop Wine
             </Button>
-            <a href={`tel:${siteSettings.phone.replace(/\s/g, "")}`} className="text-sm text-stone mt-2">
+            <a
+              href={`tel:${siteSettings.phone.replace(/\s/g, "")}`}
+              className="text-sm text-stone mt-2 transition-colors hover:text-charcoal"
+            >
               Call {siteSettings.phone}
             </a>
           </div>

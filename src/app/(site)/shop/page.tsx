@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/ui/PageHero";
 import { EcwidStorefront } from "@/components/shop/EcwidProvider";
+import { EcwidScripts } from "@/components/shop/EcwidScripts";
 import { siteSettings } from "@/content/seed";
 import Link from "next/link";
 
@@ -13,10 +14,11 @@ export const metadata: Metadata = {
 export default function ShopPage() {
   return (
     <>
+      <EcwidScripts />
       <PageHero label="Shop" title="Wine to your door" tone="cream">
         <p>
           Orders packed at the Cellar Door. Australia only.{" "}
-          <Link href="/wine" className="text-burgundy">
+          <Link href="/wine" className="text-wine hover:underline">
             Prefer the editorial collection?
           </Link>
         </p>
@@ -27,19 +29,19 @@ export default function ShopPage() {
           <EcwidStorefront />
 
           <div className="mt-16 max-w-2xl text-sm text-stone space-y-3 leading-relaxed">
-            <h2 className="font-display text-2xl text-charcoal">Delivery</h2>
+            <h2 className="font-display text-2xl text-charcoal leading-tight">Delivery</h2>
             <p>{siteSettings.shipping.capitals}</p>
             <p>{siteSettings.shipping.mostLocations}</p>
             <p>{siteSettings.shipping.local}</p>
             <p>These times exclude weekends, public holidays, and circumstances beyond our control.</p>
             <p>International shipping is not currently offered.</p>
-            <h2 className="font-display text-2xl text-charcoal pt-6">Privacy</h2>
+            <h2 className="font-display text-2xl text-charcoal leading-tight pt-6">Privacy</h2>
             <p>
               Information you provide will only be used for the purpose it is collected. Harman Wines
               will not sell, send, trade or otherwise disclose personal information outside Harman
               Wines.
             </p>
-            <h2 className="font-display text-2xl text-charcoal pt-6">Alcohol</h2>
+            <h2 className="font-display text-2xl text-charcoal leading-tight pt-6">Alcohol</h2>
             <p>
               WARNING: Under the Liquor Control Reform Act 1998 it is an offence to supply alcohol to
               a person under the age of 18 years (Penalty exceeds $8,000); for a person under the age

@@ -39,7 +39,7 @@ export function SectionLabel({
   children: ReactNode;
   className?: string;
 }) {
-  return <p className={cn("label-micro mb-4", className)}>{children}</p>;
+  return <p className={cn("label-micro mb-4 text-stone", className)}>{children}</p>;
 }
 
 export function EditorialHeading({
@@ -56,7 +56,10 @@ export function EditorialHeading({
   return (
     <Tag
       id={id}
-      className={cn("font-display text-4xl md:text-5xl lg:text-6xl text-balance", className)}
+      className={cn(
+        "font-display text-4xl md:text-5xl lg:text-6xl leading-[1.05] tracking-tight text-balance",
+        className,
+      )}
     >
       {children}
     </Tag>

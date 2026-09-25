@@ -34,18 +34,19 @@ export function ChapterRegion() {
         </div>
 
         <ol className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {day.map((item, i) => (
-            <Reveal key={item.when} delay={i * 0.05}>
-              <li className="border-t border-charcoal/15 pt-5">
-                <p className="label-micro">{item.when}</p>
-                <p className="font-display text-2xl mt-3 text-balance">{item.what}</p>
-              </li>
-            </Reveal>
+          {day.map((item) => (
+            <li key={item.when} className="border-t border-charcoal/15 pt-5">
+              <p className="label-micro text-stone">{item.when}</p>
+              <p className="font-display text-2xl mt-3 text-balance leading-tight">{item.what}</p>
+            </li>
           ))}
         </ol>
 
         <p className="mt-12">
-          <Link href="/visit/region" className="label-micro no-underline hover:underline">
+          <Link
+            href="/visit/region"
+            className="label-micro text-wine no-underline hover:underline transition-opacity"
+          >
             Explore the region →
           </Link>
         </p>

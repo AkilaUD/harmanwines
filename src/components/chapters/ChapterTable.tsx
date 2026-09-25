@@ -26,14 +26,14 @@ export function ChapterTable() {
           <EditorialHeading id="table-heading">Fire, garden, and Gippsland plates</EditorialHeading>
         </Reveal>
 
-        <div className="mt-12 relative aspect-[16/10] md:aspect-[21/9] overflow-hidden grain">
-          <MediaImage asset={media.tablePizza} sizes="100vw" />
+        <div className="mt-12 relative aspect-[4/3] overflow-hidden grain">
+          <MediaImage asset={media.tableFoodWine} sizes="100vw" />
         </div>
 
         <div className="mt-10 grid md:grid-cols-3 gap-8 border-t border-charcoal/10 pt-10">
           {chapters.map((c) => (
             <div key={c.label}>
-              <p className="font-display text-3xl">{c.label}</p>
+              <p className="font-display text-3xl leading-tight">{c.label}</p>
               <p className="mt-2 text-stone">{c.detail}</p>
             </div>
           ))}
@@ -59,9 +59,9 @@ export function ChapterTable() {
             </p>
           </Reveal>
           <Reveal delay={0.08}>
-            <div className="relative aspect-[4/3] overflow-hidden">
+            <div className="relative aspect-[4/5] overflow-hidden">
               <MediaImage
-                asset={media.tableFoodWine}
+                asset={media.tablePizza}
                 sizes="(max-width: 1024px) 100vw, 45vw"
               />
             </div>

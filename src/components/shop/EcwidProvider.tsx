@@ -1,6 +1,5 @@
 "use client";
 
-import Script from "next/script";
 import { useCallback, useEffect, useState } from "react";
 import { ecwidStoreId } from "@/lib/integrations";
 
@@ -100,22 +99,7 @@ function openCartUi() {
 }
 
 export function EcwidProvider({ children }: { children?: React.ReactNode }) {
-  return (
-    <>
-      <Script
-        id="ecwid-config"
-        strategy="afterInteractive"
-        dangerouslySetInnerHTML={{
-          __html: `window.ecwid_script_defer = true; window.ecwid_dynamic_widgets = true;`,
-        }}
-      />
-      <Script
-        src={`https://app.ecwid.com/script.js?${ecwidStoreId}&data_platform=code`}
-        strategy="afterInteractive"
-      />
-      {children}
-    </>
-  );
+  return <>{children}</>;
 }
 
 export function EcwidBuyButton({
@@ -130,6 +114,12 @@ export function EcwidBuyButton({
   const onClick = useCallback(() => {
     if (!productId) {
       window.location.href = "/shop";
+      return;
+    }
+
+    // No global Ecwid script — hand off to shop product/cart
+    if (!hasMountedStorefront() && !window.Ecwid?.Cart?.addProduct) {
+      window.location.href = `/shop#!/p/${productId}`;
       return;
     }
 
@@ -158,7 +148,6 @@ export function EcwidBuyButton({
           finish();
         },
       });
-      // If callback is delayed/missing, still leave PDP for the shop cart
       window.setTimeout(() => {
         if (!finished) {
           openCartUi();
@@ -221,8 +210,14 @@ export function EcwidStorefront() {
   }, [containerId]);
 
   return (
-    <div className="ecwid-storefront min-h-[480px]">
-      <div id={containerId} />
+    <div className="embed-shell ecwid-storefront relative">
+      <div
+        className="pointer-events-none absolute inset-4 flex items-center justify-center text-stone label-micro"
+        aria-hidden
+      >
+        Loading shop…
+      </div>
+      <div id={containerId} className="relative z-10 min-h-[420px]" />
     </div>
   );
 }
